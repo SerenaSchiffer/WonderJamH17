@@ -16,7 +16,7 @@ public class HoleDismiss : MonoBehaviour {
 	void Update () {
         if (actualTime <= timeToDie)
         {
-            Debug.Log(actualTime);
+            //Debug.Log(actualTime);
             actualTime += Time.deltaTime;
         }
         else
