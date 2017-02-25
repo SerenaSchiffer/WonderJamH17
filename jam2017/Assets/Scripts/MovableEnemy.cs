@@ -20,10 +20,11 @@ public class MovableEnemy : MonoBehaviour {
     private bool isNear = false;
     private bool isShooting = false;
     private float spreadShootRobot = 20;
+    
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -47,6 +48,7 @@ public class MovableEnemy : MonoBehaviour {
             if (direction.magnitude < 0.1f)
             {
                 direction = Vector2.zero;
+                AddVelocity(0);
             }
             else
             {

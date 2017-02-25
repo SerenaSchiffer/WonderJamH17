@@ -12,6 +12,13 @@ enum SelectedAttack
     Missile = 4
 }
 
+public enum SelectedSpawnPosition
+{
+    Left,
+    Right,
+    Bottom
+}
+
 public class Pewdiepie_UI : MonoBehaviour {
 
     public GameObject[] unit_icons;
@@ -108,7 +115,7 @@ public class Pewdiepie_UI : MonoBehaviour {
                 break;
 
             case SelectedAttack.Juggernaut:
-                Debug.Log("Spawn juggernaut");
+                
                 break;
 
             case SelectedAttack.Sniper:
