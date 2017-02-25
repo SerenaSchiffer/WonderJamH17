@@ -9,10 +9,16 @@ public class PlayableFarmer : PlayableChar {
     {
         melWeapon = new PitchFork();
         rangWeapon = new Shotgun();
+        Debug.Log("Yolo");
     }
 
     protected override void UseSpecial()
     {
         // Effects of the special attack
+    }
+
+    public void RangeWeapon()
+    {
+
     }
 }
