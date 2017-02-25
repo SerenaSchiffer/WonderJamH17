@@ -8,7 +8,7 @@ public class Dialogue_pewdiepie : MonoBehaviour {
     public GameObject panel;
     public Text text;
 
-    public string[] waveTexts = { "There  is  no  tolerance  for  rebels\nLay  down  your  weapons  and  your  family\nWill  be  spared" };
+    private string[] waveTexts = { "There  is  no  tolerance  for  rebels.        \nLay  down  your  weapons  and  your  family\nWill  be  spared." };
 
     private int currentWave;
     private int aliveFrames = 0;
