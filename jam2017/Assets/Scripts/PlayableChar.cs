@@ -41,7 +41,7 @@ public class PlayableChar : MonoBehaviour
         float yLeftt = Input.GetAxis("LeftAxisYPlayer" + PlayerIdNumber) * -1;
         Vector2 velocity = new Vector2(xRight * Mathf.PI, yRight * Mathf.PI);
 
-        //this.GetComponent<RigidBody2D>().Velocity = velocity;
+        this.GetComponent<RigidBody2D>().Velocity = velocity;
 
     }
 
