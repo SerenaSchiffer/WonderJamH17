@@ -7,7 +7,7 @@ public class CharSelect : MonoBehaviour {
 
     int[] playerSelected;
 
-    string[] charTexts = { "The Businessman", "The Rebel", "Anonymous", "The Farmer" };
+    string[] charTexts = { "The  Businessman", "The  Rebel", "Anonymous", "The  Farmer" };
 
     public Image[] images;
     public Text[] texts;
@@ -16,7 +16,7 @@ public class CharSelect : MonoBehaviour {
 	void Start () {
         playerSelected = new int[4];
         for(int i = 0; i < 4; i++)
-            playerSelected[i] = 0;
+            playerSelected[i] = i;
     }
 	
 	// Update is called once per frame
@@ -29,14 +29,17 @@ public class CharSelect : MonoBehaviour {
                 playerSelected[0] = 4;
             playerSelected[0] -= 1;
             playerSelected[0] %= 4;
-            texts[0].text = charTexts[playerSelected[0]];
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             playerSelected[0] += 1;
             playerSelected[0] %= 4;
-            texts[0].text = charTexts[playerSelected[0]];
         }
 
+        for (int i = 0; i < 4; i++)
+        {
+            texts[i].text = charTexts[playerSelected[i]];
+            images[i].sprite = Resources.Load<Sprite>("Selection/select" + playerSelected[i]);
+        }
     }
 }
