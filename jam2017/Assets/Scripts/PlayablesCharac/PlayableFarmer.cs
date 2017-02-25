@@ -7,6 +7,7 @@ public class PlayableFarmer : PlayableChar {
     Transform viseur;
     public int NbrBullet;
     public float spread;
+    public static int ID;
     // Use this for initialization
     public override void Start()
     {
@@ -15,6 +16,8 @@ public class PlayableFarmer : PlayableChar {
         Debug.Log("Yolo");
         nextShot = 0;
         viseur = transform.GetChild(0);
+        PlayerIdNumber = ID;
+        base.Start();
     }
 
     protected override void UseSpecial()
@@ -49,5 +52,10 @@ public class PlayableFarmer : PlayableChar {
         {
             nextShot = 0;
         }
+    }
+
+    public static void UpdateID(int id)
+    {
+        ID = id;
     }
 }

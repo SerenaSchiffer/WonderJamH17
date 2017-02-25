@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayableSuit : PlayableChar {
     Transform viseur;
+    public static int ID;
     // Use this for initialization
     public override void Start()
     {
@@ -11,6 +12,8 @@ public class PlayableSuit : PlayableChar {
         rangWeapon = new Pistol();
         viseur = transform.GetChild(0);
         nextShot = 0;
+        PlayerIdNumber = ID;
+        base.Start();
     }
 
     protected override void UseSpecial()
@@ -39,5 +42,10 @@ public class PlayableSuit : PlayableChar {
         {
             nextShot = 0;
         }
+    }
+
+    public static void UpdateID(int id)
+    {
+        ID = id;
     }
 }

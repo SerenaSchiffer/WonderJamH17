@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharSelect : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class CharSelect : MonoBehaviour {
     public Text[] texts;
     bool axis1, axis2, axis3, axis4;
     bool selected1, selected2, selected3, selected4;
+    bool p1Sel, p2Sel, p3Sel, p4Sel;
 
 	// Use this for initialization
 	void Start () {
@@ -24,8 +26,12 @@ public class CharSelect : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Application.LoadLevel("GameScene");
+        }
         //select1
-        if (Input.GetAxisRaw("LeftAxisXPlayer1") != 0)
+        if (Input.GetAxisRaw("LeftAxisXPlayer1") != 0 && !p1Sel)
         {
             if (!axis1)
             {
@@ -51,9 +57,56 @@ public class CharSelect : MonoBehaviour {
         }
 
 
+        if(Input.GetButtonDown("P1Select") && !p1Sel)
+        {
+            
+            switch (playerSelected[0])
+            {
+                case 0:
+                    if (!selected1)
+                    {
+                        images[0].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected1 = true;
+                        PlayableSuit.UpdateID(1);
+                        p1Sel = true;
+                    }
+                    break;
+                case 1:
+                    if (!selected2)
+                    {
+                        images[0].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected2 = true;
+                        PlayableRebel.UpdateID(1);
+                        p1Sel = true;
+                    }
+                    break;
+                case 2:
+                    if (!selected3)
+                    {
+                        images[0].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected3 = true;
+                        PlayableAnonymous.UpdateID(1);
+                        p1Sel = true;
+                    }
+                    break;
+                case 3:
+                    if (!selected4)
+                    {
+                        images[0].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected4 = true;
+                        PlayableFarmer.UpdateID(1);
+                        p1Sel = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
         //////////////////Player2
 
-        if (Input.GetAxisRaw("LeftAxisXPlayer2") != 0)
+        if (Input.GetAxisRaw("LeftAxisXPlayer2") != 0 && !p2Sel)
         {
             if (!axis2)
             {
@@ -78,9 +131,55 @@ public class CharSelect : MonoBehaviour {
             axis2 = false;
         }
 
+
+        if (Input.GetButtonDown("P2Select") && !p2Sel)
+        {
+            
+            switch (playerSelected[1])
+            {
+                case 0:
+                    if (!selected1)
+                    {
+                        images[1].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected1 = true;
+                        PlayableSuit.UpdateID(2);
+                        p2Sel = true;
+                    }
+                    break;
+                case 1:
+                    if (!selected2)
+                    {
+                        images[1].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected2 = true;
+                        PlayableRebel.UpdateID(2);
+                        p2Sel = true;
+                    }
+                    break;
+                case 2:
+                    if (!selected3)
+                    {
+                        images[1].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected3 = true;
+                        PlayableAnonymous.UpdateID(2);
+                        p2Sel = true;
+                    }
+                    break;
+                case 3:
+                    if (!selected4)
+                    {
+                        images[1].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected4 = true;
+                        PlayableFarmer.UpdateID(2);
+                        p2Sel = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
         ///////////////////Player3
 
-        if (Input.GetAxisRaw("LeftAxisXPlayer3") != 0)
+        if (Input.GetAxisRaw("LeftAxisXPlayer3") != 0 && !p3Sel)
         {
             if (!axis3)
             {
@@ -105,10 +204,56 @@ public class CharSelect : MonoBehaviour {
             axis3 = false;
         }
 
+        if (Input.GetButtonDown("P3Select") && !p3Sel)
+        {
+            
+            switch (playerSelected[2])
+            {
+                case 0:
+                    if (!selected1)
+                    {
+                        images[2].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected1 = true;
+                        PlayableSuit.UpdateID(3);
+                        p3Sel = true;
+                    }
+                    break;
+                case 1:
+                    if (!selected2)
+                    {
+                        images[2].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected2 = true;
+                        PlayableRebel.UpdateID(3);
+                        p3Sel = true;
+                    }
+                    break;
+                case 2:
+                    if (!selected3)
+                    {
+                        images[2].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected3 = true;
+                        PlayableAnonymous.UpdateID(3);
+                        p3Sel = true;
+                    }
+                    break;
+                case 3:
+                    if (!selected4)
+                    {
+                        images[2].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected4 = true;
+                        PlayableFarmer.UpdateID(3);
+                        p3Sel = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         ///////////////Player4
 
-        if (Input.GetAxisRaw("LeftAxisXPlayer4") != 0)
+        if (Input.GetAxisRaw("LeftAxisXPlayer4") != 0 && !p4Sel)
         {
             if (!axis4)
             {
@@ -131,6 +276,52 @@ public class CharSelect : MonoBehaviour {
         else
         {
             axis4 = false;
+        }
+
+        if (Input.GetButtonDown("P4Select") && !p4Sel)
+        {
+            
+            switch (playerSelected[3])
+            {
+                case 0:
+                    if (!selected1)
+                    {
+                        images[3].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected1 = true;
+                        PlayableSuit.UpdateID(4);
+                        p4Sel = true;
+                    }
+                    break;
+                case 1:
+                    if (!selected2)
+                    {
+                        images[3].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected2 = true;
+                        PlayableRebel.UpdateID(4);
+                        p4Sel = true;
+                    }
+                    break;
+                case 2:
+                    if (!selected3)
+                    {
+                        images[3].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected3 = true;
+                        PlayableAnonymous.UpdateID(4);
+                        p4Sel = true;
+                    }
+                    break;
+                case 3:
+                    if (!selected4)
+                    {
+                        images[3].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected4 = true;
+                        PlayableFarmer.UpdateID(4);
+                        p4Sel = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
 
