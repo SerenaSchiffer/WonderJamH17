@@ -19,6 +19,8 @@ public class PlayableFarmer : PlayableChar {
 
     public void RangeWeapon()
     {
-
+        float x = Input.GetAxisRaw("RightAxisXPlayer1");
+        float y = Input.GetAxisRaw("RightAxisYPlayer1");
+        Transform viseur = transform.GetChild(0);
     }
 }
