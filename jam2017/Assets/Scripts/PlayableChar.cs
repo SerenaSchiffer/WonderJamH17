@@ -31,6 +31,7 @@ public class PlayableChar : MonoBehaviour
     {
         myAnimator = GetComponent<Animator>();
         meleeAttack = 0;
+        PlayerIdNumber = 1; //TODELETE
         if(PlayerIdNumber == 0)
         {
             Destroy(this.gameObject);
