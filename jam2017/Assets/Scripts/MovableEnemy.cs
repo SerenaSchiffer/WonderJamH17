@@ -179,22 +179,21 @@ public class MovableEnemy : MonoBehaviour {
             bulletLine.transform.position = gameObject.transform.position;
             bulletLine.AddComponent<LineRenderer>();
             LineRenderer lr = bulletLine.GetComponent<LineRenderer>();
-
             lr.startColor = Color.red;
             lr.endColor = Color.red;
-            lr.startWidth = 0.01f;
-            lr.endWidth = 0.01f;
-            lr.SetPosition(0, gameObject.transform.position);
-            lr.SetPosition(1, gameObject.transform.position);
+            lr.startWidth = 0.03f;
+            lr.endWidth = 0.03f;
+            lr.SetPosition(0, gameObject.transform.position + new Vector3(0, 0, -0.1f));
+            lr.SetPosition(1, other.transform.position + new Vector3(0, 0, -0.1f));
 
-            GameObject.Destroy(bulletLine, 0.5f);
+            GameObject.Destroy(bulletLine, nextShot - 0.1f);
 
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/SniperBullet"));
         }
         else if (type == TypeMoveableEnemy.Juggernaut)
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/JuggernautBullet"));
         else
-            bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Bullet"));
+            bullet = (GameObject)Instantiate(Resources.Load("Prefabs/EnemyBullet"));
 
         bullet.transform.position = transform.position;
         direction = GetDistance(other);
