@@ -20,6 +20,7 @@ public class MovableEnemy : MonoBehaviour {
     private bool isNear = false;
     private bool isShooting = false;
     private float spreadShootRobot = 20;
+    
 	// Use this for initialization
 	void Start () {
 		

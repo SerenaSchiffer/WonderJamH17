@@ -12,6 +12,13 @@ enum SelectedAttack
     Missile = 4
 }
 
+public enum SelectedSpawnPosition
+{
+    Left,
+    Right,
+    Bottom
+}
+
 public class Pewdiepie_UI : MonoBehaviour {
 
     public GameObject[] unit_icons;
@@ -75,7 +82,7 @@ public class Pewdiepie_UI : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Vector2 position = GameObject.Find("LeftSpawnPosition").transform.position;
-            SpawnEnemy(position);
+            SpawnEnemy(position, SelectedSpawnPosition.Left);
         }
         
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -91,7 +98,7 @@ public class Pewdiepie_UI : MonoBehaviour {
         }
     }
 
-    private void SpawnEnemy(Vector2 spawnPosition)
+    private void SpawnEnemy(Vector2 spawnPosition, SelectedSpawnPosition selectedSpawnPosition)
     {
         switch (selectedAttack)
         {
@@ -99,6 +106,7 @@ public class Pewdiepie_UI : MonoBehaviour {
                 GameObject soldiers = (GameObject)Instantiate(Resources.Load("Prefabs/Soldiers"));
                 soldiers.transform.position = spawnPosition;
                 soldiers.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
+                SetFollowSoldierPosition(soldiers, spawnPosition, )
                 break;
 
             case SelectedAttack.Robot:
@@ -117,6 +125,26 @@ public class Pewdiepie_UI : MonoBehaviour {
 
             case SelectedAttack.Missile:
                 Debug.Log("Spawn missile");
+                break;
+        }
+    }
+
+    private void SetFollowSoldierPosition(GameObject soldiers, Vector2 spawnPosition, SelectedSpawnPosition selectedSpawnPosition)
+    {
+        Transform followSoldier1 = soldiers.transform.GetChild(1);
+        Transform followSoldier2 = soldiers.transform.GetChild(2);
+
+        switch (selectedSpawnPosition)
+        {
+            case SelectedSpawnPosition.Left:
+            case SelectedSpawnPosition.Right:
+                followSoldier1.position = spawnPosition + new Vector2(0, 1.5f);
+                followSoldier1.position = spawnPosition + new Vector2(0, -1.5f);
+                break;
+
+            case SelectedSpawnPosition.Bottom:
+                followSoldier1.position = spawnPosition + new Vector2(1.5f, 0);
+                followSoldier1.position = spawnPosition + new Vector2(-1.5f, 0);
                 break;
         }
     }
