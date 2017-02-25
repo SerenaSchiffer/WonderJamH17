@@ -30,7 +30,7 @@ public class PlayableChar : MonoBehaviour
         float xRight = Input.GetAxis("RightAxisXPlayer"+PlayerIdNumber);
         float yRight = Input.GetAxis("RightAxisYPlayer"+PlayerIdNumber) *-1;
         Transform viseur = transform.GetChild(0);
-        viseur.position = new Vector2(xRight, yRight);
+        viseur.position = (new Vector2(xRight, yRight)).normalized;
         viseur.localPosition = Vector2.ClampMagnitude(viseur.position,2);
 
         //Todelete
@@ -43,11 +43,11 @@ public class PlayableChar : MonoBehaviour
         float yLeft = Input.GetAxis("LeftAxisYPlayer" + PlayerIdNumber) * -1;
         Vector2 velocity = new Vector2(xLeft, yLeft);
 
-        if (xLeft <0 && this.transform.localScale.x > 0)
+        if (xLeft <0)
         {
             //this.transform.localScale = new Vector3(this.transform.localScale.x * -1, this.transform.localScale.y, this.transform.localScale.z);
             this.GetComponent<SpriteRenderer>().flipX = true;
-        }else if(xLeft > 0 && this.transform.localScale.x < 0)
+        }else if(xLeft > 0)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
             //this.transform.localScale = new Vector3(this.transform.localScale.x * -1, this.transform.localScale.y, this.transform.localScale.z);
