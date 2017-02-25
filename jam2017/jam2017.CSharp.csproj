@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Guns.cs" />
     <Compile Include="Assets\Scripts\Melee.cs" />
     <Compile Include="Assets\Scripts\MovableEnemy.cs" />
+    <Compile Include="Assets\Scripts\Pewdiepie_UI.cs" />
     <Compile Include="Assets\Scripts\PlayableChar.cs" />
     <Compile Include="Assets\Scripts\PlayablesCharac\PlayableAnonymous.cs" />
     <Compile Include="Assets\Scripts\PlayablesCharac\PlayableFarmer.cs" />
