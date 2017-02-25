@@ -19,6 +19,8 @@ public class MovableEnemy : MonoBehaviour {
     public float nextShot;
     public float spreadShoot;
     public float bulletSpeed;
+    public int spawnCost;
+
     bool IsAiming;
 
     private GameObject destination;
