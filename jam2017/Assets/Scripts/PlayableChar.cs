@@ -14,6 +14,7 @@ public class PlayableChar : MonoBehaviour
     protected Guns rangWeapon;
     protected float fireRate;
     protected float nextShot;
+    public int damage;
 
     public int PlayerIdNumber;
     

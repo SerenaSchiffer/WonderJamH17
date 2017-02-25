@@ -34,11 +34,11 @@ public class PlayableFarmer : PlayableChar {
             {
                 float random = Random.Range(-spread, spread);
                 direction = Quaternion.AngleAxis(random, Vector3.forward) * direction;
-                GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Bullet"));
+                GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/ShotgunBullet"));
                 bullet.transform.position = transform.position;
-                bullet.transform.localScale /= 3;
-                float randSpeed = Random.Range(5f, 8f);
+                float randSpeed = Random.Range(8f, 11f);
                 bullet.GetComponent<Rigidbody2D>().velocity = direction * randSpeed;
+                bullet.GetComponent<Bullet>().damage = this.damage;
             }
         }
         if (nextShot > 0)

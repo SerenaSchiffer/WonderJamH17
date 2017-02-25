@@ -28,10 +28,11 @@ public class PlayableAnonymous : PlayableChar {
             Vector2 direction = viseur.position - transform.position;
             direction.Normalize();
             Debug.Log(direction.x + " " + direction.y);
-            GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Bullet"));
+            GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/UziBullet"));
             bullet.transform.localScale /= 2;
             bullet.transform.position = transform.position;
             bullet.GetComponent<Rigidbody2D>().velocity = direction * 12;
+            bullet.GetComponent<Bullet>().damage = this.damage;
         }
         if(nextShot > 0)
         {
