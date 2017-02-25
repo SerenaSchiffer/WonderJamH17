@@ -18,7 +18,7 @@ public class PlayableChar : MonoBehaviour
     public int damage;
     Transform viseur;
     public bool falling;
-    protected int PlayerIdNumber;
+    public int PlayerIdNumber;
     
 
     protected int meleeAttack;
