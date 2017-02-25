@@ -136,6 +136,7 @@ public class PlayableChar : MonoBehaviour
             healthPoints = maxHealth;
         } else
         {
+            Debug.Log("can you plz" + hp);
             healthPoints += hp;
         }
     }
