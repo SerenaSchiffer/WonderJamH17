@@ -19,8 +19,8 @@ public class PlayableChar : MonoBehaviour
     public int meleeDamage;
     Transform viseur;
     public bool falling;
-
     public int PlayerIdNumber;
+    
 
     protected int meleeAttack;
 
@@ -101,4 +101,5 @@ public class PlayableChar : MonoBehaviour
     {
         // Effects of the special attack
     }
+
 }

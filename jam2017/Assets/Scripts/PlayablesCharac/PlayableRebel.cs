@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayableRebel : PlayableChar {
 
     Transform viseur;
+    public static int ID;
 
     // Use this for initialization
     public override void Start()
@@ -14,6 +15,7 @@ public class PlayableRebel : PlayableChar {
         rangWeapon = new LaserGun();
         viseur = transform.GetChild(0);
         nextShot = 0;
+        PlayerIdNumber = ID;
     }
 
     protected override void UseSpecial()
@@ -50,6 +52,10 @@ public class PlayableRebel : PlayableChar {
         }
     }
 
+    public static void UpdateID(int id)
+    {
+        ID = id;
+    }
     protected override void MeleeAttack()
     {
         meleeAttack = 60;
