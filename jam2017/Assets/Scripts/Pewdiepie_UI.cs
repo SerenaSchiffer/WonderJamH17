@@ -27,6 +27,7 @@ public class Pewdiepie_UI : MonoBehaviour {
     private long money;
     private bool raiseMoney;
     private SelectedAttack selectedAttack;
+    bool nukeActivated;
 
 	// Use this for initialization
 	void Start () {
@@ -38,17 +39,20 @@ public class Pewdiepie_UI : MonoBehaviour {
 	
     IEnumerator AddMoney()
     {
-        int moneyFactor = 10;
-
-        while (raiseMoney)
+        if (!nukeActivated)
         {
-            yield return new WaitForSeconds(1f);
-            if (Hack.beingHacked)
-                continue;
-            money += moneyFactor;
-            moneyFactor += 2;
+            int moneyFactor = 10;
+
+            while (raiseMoney)
+            {
+                yield return new WaitForSeconds(1f);
+                if (Hack.beingHacked)
+                    continue;
+                money += moneyFactor;
+                moneyFactor += 2;
+            }
+            yield return null;
         }
-        yield return null;
     }
 
 	// Update is called once per frame
@@ -79,11 +83,18 @@ public class Pewdiepie_UI : MonoBehaviour {
         {
             selectedAttack = SelectedAttack.Missile;
         }
+        if(Input.GetKeyDown(KeyCode.Space) || nukeActivated)
+        {
+            Nuke();
+        }
         foreach (GameObject g in unit_icons)
             g.GetComponent<Image>().color = Color.white;
         unit_icons[(int)selectedAttack].GetComponent<Image>().color = Color.yellow;
-        
-        myMoney.text = money + " $";
+
+        if (!nukeActivated)
+        {
+            myMoney.text = money + " $";
+        }
 
 
         if(Input.GetKeyDown(KeyCode.LeftArrow))
@@ -184,5 +195,16 @@ public class Pewdiepie_UI : MonoBehaviour {
                 
                 break;
         }
+    }
+
+    public void ActivateNuke()
+    {
+        nukeActivated = true;
+        money = 0;
+    }
+
+    void Nuke()
+    {
+
     }
 }
