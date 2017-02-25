@@ -88,13 +88,13 @@ public class Pewdiepie_UI : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             Vector2 position = GameObject.Find("RightSpawnPosition").transform.position;
-            SpawnEnemy(position);
+            SpawnEnemy(position, SelectedSpawnPosition.Right);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Vector2 position = GameObject.Find("BottomSpawnPosition").transform.position;
-            SpawnEnemy(position);
+            SpawnEnemy(position, SelectedSpawnPosition.Bottom);
         }
     }
 
@@ -106,7 +106,7 @@ public class Pewdiepie_UI : MonoBehaviour {
                 GameObject soldiers = (GameObject)Instantiate(Resources.Load("Prefabs/Soldiers"));
                 soldiers.transform.position = spawnPosition;
                 soldiers.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
-                SetFollowSoldierPosition(soldiers, spawnPosition, )
+                SetFollowSoldierPosition(soldiers, spawnPosition, selectedSpawnPosition);
                 break;
 
             case SelectedAttack.Robot:
@@ -138,13 +138,13 @@ public class Pewdiepie_UI : MonoBehaviour {
         {
             case SelectedSpawnPosition.Left:
             case SelectedSpawnPosition.Right:
-                followSoldier1.position = spawnPosition + new Vector2(0, 1.5f);
-                followSoldier1.position = spawnPosition + new Vector2(0, -1.5f);
+                followSoldier1.position = spawnPosition + new Vector2(0, 0.75f);
+                followSoldier2.position = spawnPosition + new Vector2(0, -0.75f);
                 break;
 
             case SelectedSpawnPosition.Bottom:
-                followSoldier1.position = spawnPosition + new Vector2(1.5f, 0);
-                followSoldier1.position = spawnPosition + new Vector2(-1.5f, 0);
+                followSoldier1.position = spawnPosition + new Vector2(0.5f, 0);
+                followSoldier2.position = spawnPosition + new Vector2(-0.5f, 0);
                 break;
         }
     }
