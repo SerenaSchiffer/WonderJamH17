@@ -16,6 +16,7 @@ public class MovableEnemy : MonoBehaviour {
     public TypeMoveableEnemy type;
     public float nextShot;
     public float spreadShoot;
+    public float bulletSpeed;
 
     private GameObject destination;
     private GameObject playerToShoot;
@@ -25,6 +26,7 @@ public class MovableEnemy : MonoBehaviour {
     private bool isNear = false;
     private bool isShooting = false;
     private float decNextShot = 0;
+    private int cpt = 0;
 
     // Use this for initialization
     void Start() {
@@ -47,6 +49,7 @@ public class MovableEnemy : MonoBehaviour {
 
     private void ReachDestination()
     {
+        
         if (type == TypeMoveableEnemy.Soldier)
         {
             destination = GameObject.FindGameObjectWithTag("DestinationSoldier");
@@ -56,7 +59,7 @@ public class MovableEnemy : MonoBehaviour {
         {
             FollowPlayer();
         }
-        else if (type == TypeMoveableEnemy.Juggernaut || type == TypeMoveableEnemy.Sniper)
+        else if (type == TypeMoveableEnemy.Juggernaut)
         {
             isShooting = true;
             destination = GetSelectedSpawnPositionObject();
@@ -76,9 +79,8 @@ public class MovableEnemy : MonoBehaviour {
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
-        int indiceRandom = UnityEngine.Random.Range(0, 4);
-        Debug.Log(indiceRandom);
-        return new GameObject();
+        int indiceRandom = UnityEngine.Random.Range(0, players.Length);
+        return players[indiceRandom];
     }
 
     private void GoToDestination()
@@ -145,10 +147,15 @@ public class MovableEnemy : MonoBehaviour {
                 destination = GameObject.Find("BottomDestination");
                 break;
         }
-
+        
         if (type == TypeMoveableEnemy.Sniper)
         {
-            destination.transform.position += new Vector3(0, 3);
+            if (cpt == 0)
+            {
+                destination.transform.position += new Vector3(0, 1.5f);
+                cpt++;
+            }
+                
             return destination;
         }
         else
@@ -164,7 +171,14 @@ public class MovableEnemy : MonoBehaviour {
     {
         Vector2 direction;
         Transform projectilePosition = gameObject.transform;
-        GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Bullet"));
+        GameObject bullet;
+
+        if (type == TypeMoveableEnemy.Sniper)
+            bullet = (GameObject)Instantiate(Resources.Load("Prefabs/SniperBullet"));
+        else if (type == TypeMoveableEnemy.Juggernaut)
+            bullet = (GameObject)Instantiate(Resources.Load("Prefabs/JuggernautBullet"));
+        else
+            bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Bullet"));
 
         bullet.transform.position = transform.position;
         direction = GetDistance(other);
@@ -175,7 +189,7 @@ public class MovableEnemy : MonoBehaviour {
             direction = Quaternion.AngleAxis(random, Vector3.forward) * direction;
         }
 
-        bullet.GetComponent<Rigidbody2D>().velocity = direction * 1.5f;
+        bullet.GetComponent<Rigidbody2D>().velocity = direction.normalized * bulletSpeed;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -197,7 +211,6 @@ public class MovableEnemy : MonoBehaviour {
             isShooting = false;
             playerToShoot = null;
         }
-            
     }
 
     Vector2 GetDistance(GameObject other)
