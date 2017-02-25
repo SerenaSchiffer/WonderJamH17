@@ -17,9 +17,16 @@ public class PlayableAnonymous : PlayableChar {
         base.Start();
     }
 
+    public void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+            UseSpecial();
+    }
+
     protected override void UseSpecial()
     {
         // Effects of the special attack
+        GameObject.Find("EventSystem").GetComponent<Hack>().TurnOnHacking();
     }
 
     protected override void RangeAttack()

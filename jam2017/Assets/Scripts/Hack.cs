@@ -4,17 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Hack : MonoBehaviour {
-
+    public static bool beingHacked;
     GameObject hackPanel;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         hackPanel = GameObject.Find("Hack");
         hackPanel.SetActive(false);
-	}
+        beingHacked = false;
+    }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public void TurnOnHacking()
+    {
+        beingHacked = true;
+        hackPanel.SetActive(true);
+        StartCoroutine(StopHack());
+    }
+
+    IEnumerator StopHack()
+    {
+        yield return new WaitForSeconds(5f);
+        beingHacked = false;
+        hackPanel.SetActive(false);
+    }
 }

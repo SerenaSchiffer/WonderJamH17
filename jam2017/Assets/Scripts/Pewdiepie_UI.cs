@@ -43,6 +43,8 @@ public class Pewdiepie_UI : MonoBehaviour {
         while (raiseMoney)
         {
             yield return new WaitForSeconds(1f);
+            if (Hack.beingHacked)
+                continue;
             money += moneyFactor;
             moneyFactor += 2;
         }
@@ -52,6 +54,8 @@ public class Pewdiepie_UI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // Je m'excuse
+        if (Hack.beingHacked)
+            return;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             selectedAttack = SelectedAttack.Soldier;
