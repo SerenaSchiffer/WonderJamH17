@@ -15,7 +15,7 @@ public class PlayableChar : MonoBehaviour
     protected float fireRate;
     protected float nextShot;
 
-    int PlayerIdNumber = 1;
+    public int PlayerIdNumber;
     
     //enum Controls {Attack = "R2" ,Melee = "R1" ,SpecialAttack = "L1" };
 
@@ -32,7 +32,7 @@ public class PlayableChar : MonoBehaviour
         viseur.localPosition = Vector2.ClampMagnitude(viseur.position,2);
 
         //Todelete
-        if (Input.GetButton("R1Player1"))
+        if (Input.GetButton("R1Player"+PlayerIdNumber))
         {
             RangeAttack();
             
@@ -42,7 +42,7 @@ public class PlayableChar : MonoBehaviour
         float yLeft = Input.GetAxis("LeftAxisYPlayer" + PlayerIdNumber) * -1;
         Vector2 velocity = new Vector2(xLeft, yLeft);
 
-        this.GetComponent<Rigidbody2D>().velocity= velocity;
+        this.GetComponent<Rigidbody2D>().velocity= velocity*movSpeed;
 
     }
 
