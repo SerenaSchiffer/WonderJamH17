@@ -23,8 +23,8 @@ public class Dash : MonoBehaviour {
         if(dashSprite)
         {
             actualTime += Time.deltaTime;
-            Color aValue= dashSprite.GetComponent<SpriteRenderer>().color;
-            Color theNewFade = new Color();
+            Color actualValue= dashSprite.GetComponent<SpriteRenderer>().color;
+            Color theNewFade = new Color(actualValue.r,actualValue.g,actualValue.b,actualValue.a - fadeValue);
             if(actualTime>=timeToDieDash)
             {
                 Destroy(dashSprite);
