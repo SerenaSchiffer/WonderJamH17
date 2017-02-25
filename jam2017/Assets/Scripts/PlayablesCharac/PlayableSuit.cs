@@ -13,6 +13,7 @@ public class PlayableSuit : PlayableChar {
         viseur = transform.GetChild(0);
         nextShot = 0;
         PlayerIdNumber = ID;
+        base.Start();
     }
 
     protected override void UseSpecial()

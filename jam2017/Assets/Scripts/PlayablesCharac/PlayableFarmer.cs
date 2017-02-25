@@ -17,6 +17,7 @@ public class PlayableFarmer : PlayableChar {
         nextShot = 0;
         viseur = transform.GetChild(0);
         PlayerIdNumber = ID;
+        base.Start();
     }
 
     protected override void UseSpecial()

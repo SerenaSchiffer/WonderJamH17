@@ -10,12 +10,13 @@ public class PlayableRebel : PlayableChar {
     // Use this for initialization
     public override void Start()
     {
-        base.Start();
+        
         melWeapon = new Lightsaber();
         rangWeapon = new LaserGun();
         viseur = transform.GetChild(0);
         nextShot = 0;
         PlayerIdNumber = ID;
+        base.Start();
     }
 
     protected override void UseSpecial()

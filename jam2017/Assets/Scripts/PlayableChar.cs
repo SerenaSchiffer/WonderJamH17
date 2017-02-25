@@ -30,6 +30,10 @@ public class PlayableChar : MonoBehaviour
     {
         myAnimator = GetComponent<Animator>();
         meleeAttack = 0;
+        if(PlayerIdNumber == 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
     protected virtual void SpecialAttack(){ }
     protected virtual void RangeAttack() { }
