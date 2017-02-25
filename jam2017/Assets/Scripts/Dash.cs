@@ -6,9 +6,9 @@ public class Dash : MonoBehaviour {
 
 
     private int playerID;
-    public float dashRate;
+    public float dashRate; //Preferable setting = 50
 
-    public float timeToDieDash;
+    public float timeToDieDash; //Preferable settin = 0.6
     private float actualTime;
     private float fadeValue;
     GameObject dashSprite;
@@ -22,9 +22,11 @@ public class Dash : MonoBehaviour {
 	void Update () {
         if(dashSprite)
         {
+            
             actualTime += Time.deltaTime;
             Color actualValue= dashSprite.GetComponent<SpriteRenderer>().color;
-            Color theNewFade = new Color(actualValue.r,actualValue.g,actualValue.b,actualValue.a - fadeValue);
+            //Debug.Log(actualValue.a);
+            dashSprite.GetComponent<SpriteRenderer>().color = new Color(actualValue.r,actualValue.g,actualValue.b,actualValue.a - fadeValue);
             if(actualTime>=timeToDieDash)
             {
                 Destroy(dashSprite);
@@ -36,7 +38,7 @@ public class Dash : MonoBehaviour {
         }
 
 
-	    if(Input.GetButtonDown("DashPlayer"+ playerID))
+	    if(Input.GetButtonDown("DashPlayer"+ playerID) && !dashSprite)
         {
             Vector2 pos1 = transform.position;
             Vector2 joystickOrientation = new Vector2(Input.GetAxis("LeftAxisXPlayer" + playerID), Input.GetAxis("LeftAxisYPlayer" + playerID)*-1);
@@ -57,7 +59,12 @@ public class Dash : MonoBehaviour {
             dashSprite.transform.position = posCentre;
             dashSprite.transform.Rotate(0, 0, angle);
 
-            fadeValue = 100f / (timeToDieDash / Time.deltaTime);
+            Color actualValue = dashSprite.GetComponent<SpriteRenderer>().color;
+            actualValue.a = 0.5f;
+            dashSprite.GetComponent<SpriteRenderer>().color = new Color(actualValue.r, actualValue.g, actualValue.b, actualValue.a);
+
+            fadeValue = 1f / (timeToDieDash / Time.deltaTime);
+            Debug.Log(fadeValue);
         }
 	}
 }
