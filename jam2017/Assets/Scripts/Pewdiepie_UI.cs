@@ -24,7 +24,7 @@ public class Pewdiepie_UI : MonoBehaviour {
     public GameObject[] unit_icons;
     public Text myMoney;
     
-    private int money;
+    private long money;
     private bool raiseMoney;
     private SelectedAttack selectedAttack;
 
@@ -105,32 +105,76 @@ public class Pewdiepie_UI : MonoBehaviour {
         switch (selectedAttack)
         {
             case SelectedAttack.Soldier:
-                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Soldier"));
-                spawnedAttack.transform.position = spawnPosition;
-                spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
+                if (money >= 150)
+                {
+                    spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Soldier"));
+                    spawnedAttack.transform.position = spawnPosition;
+                    spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
+                    money -= spawnedAttack.GetComponent<MovableEnemy>().spawnCost;
+                }
+                else
+                {
+                    //Gerer feedback
+                }
                 break;
 
             case SelectedAttack.Robot:
-                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Robot"));
-                spawnedAttack.transform.position = spawnPosition;
-                spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Robot;
+                if (money >= 350)
+                {
+                    spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Robot"));
+                    spawnedAttack.transform.position = spawnPosition;
+                    spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Robot;
+                    money -= spawnedAttack.GetComponent<MovableEnemy>().spawnCost;
+                }
+                else
+                {
+                    //Gerer feedback
+                }
+
                 break;
 
             case SelectedAttack.Juggernaut:
-                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Juggernaut"));
-                spawnedAttack.transform.position = spawnPosition;
-                spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
+                if (money >= 500)
+                {
+                    spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Juggernaut"));
+                    spawnedAttack.transform.position = spawnPosition;
+                    spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
+                    money -= spawnedAttack.GetComponent<MovableEnemy>().spawnCost;
+                }
+                else
+                {
+                    //Gerer feedback
+                }
+                
                 break;
 
             case SelectedAttack.Sniper:
-                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Sniper"));
-                spawnedAttack.transform.position = spawnPosition;
-                spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
+                if (money >= 750)
+                {
+                    spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Sniper"));
+                    spawnedAttack.transform.position = spawnPosition;
+                    spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
+                    money -= spawnedAttack.GetComponent<MovableEnemy>().spawnCost;
+                }
+                else
+                {
+                    //Gerer feedback
+                }
+
                 break;
 
             case SelectedAttack.Missile:
-                GetComponent<Missile>().SelectLocation((int)ssp);
-                GetComponent<Missile>().missileIsTriggered = true;
+                if (money >= 1000)
+                {
+                    GetComponentInParent<Missile>().SelectLocation((int)ssp);
+                    GetComponentInParent<Missile>().missileIsTriggered = true;
+                    money -= 1000;
+                }
+                else
+                {
+                    //Gerer feedback
+                }
+                
                 break;
         }
     }

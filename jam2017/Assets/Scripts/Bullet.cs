@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour {
         }
         if(other.tag == "Player" && tag != "Player" )
         {
-            other.GetComponent<PlayableChar>().SetHp(-damage);
+            other.GetComponentInParent<PlayableChar>().SetHp(-damage);
             Destroy(this.gameObject);
         }
     }
