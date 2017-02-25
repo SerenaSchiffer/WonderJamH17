@@ -8,7 +8,8 @@ public class PlayableRebel : PlayableChar {
 
     // Use this for initialization
     public override void Start()
-    {        
+    {
+        base.Start();
         melWeapon = new Lightsaber();
         rangWeapon = new LaserGun();
         viseur = transform.GetChild(0);
@@ -47,5 +48,10 @@ public class PlayableRebel : PlayableChar {
         {
             nextShot = 0;
         }
+    }
+
+    protected override void MeleeAttack()
+    {
+        meleeAttack = 60;
     }
 }

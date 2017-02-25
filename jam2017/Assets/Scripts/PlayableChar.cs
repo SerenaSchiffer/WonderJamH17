@@ -20,13 +20,16 @@ public class PlayableChar : MonoBehaviour
     public bool falling;
 
     public int PlayerIdNumber;
-    
+
+    protected int meleeAttack;
+
     //enum Controls {Attack = "R2" ,Melee = "R1" ,SpecialAttack = "L1" };
 
     // Useful Functions
     public virtual void Start()
     {
         myAnimator = GetComponent<Animator>();
+        meleeAttack = 0;
     }
     protected virtual void SpecialAttack(){ }
     protected virtual void RangeAttack() { }
@@ -34,6 +37,12 @@ public class PlayableChar : MonoBehaviour
     protected virtual void Dash() { }
     public void Update()
     {
+        if (meleeAttack > 0)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            meleeAttack--;
+            return;
+        }
         viseur = transform.GetChild(0);
         float xRight = Input.GetAxis("RightAxisXPlayer"+PlayerIdNumber);
         float yRight = Input.GetAxis("RightAxisYPlayer"+PlayerIdNumber) *-1;
