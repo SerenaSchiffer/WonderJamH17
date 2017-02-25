@@ -13,10 +13,13 @@ public enum TypeMoveableEnemy
 
 public class MovableEnemy : MonoBehaviour {
 
+    LineRenderer lr;
+    GameObject bulletLine;
     public TypeMoveableEnemy type;
     public float nextShot;
     public float spreadShoot;
     public float bulletSpeed;
+    bool IsAiming;
 
     private GameObject destination;
     private GameObject playerToShoot;
@@ -25,12 +28,12 @@ public class MovableEnemy : MonoBehaviour {
 
     private bool isNear = false;
     private bool isShooting = false;
-    private float decNextShot;
+    private float decNextShot = 0;
     private int cpt = 0;
 
     // Use this for initialization
     void Start() {
-        decNextShot = nextShot;
+
     }
 
     // Update is called once per frame
@@ -42,7 +45,13 @@ public class MovableEnemy : MonoBehaviour {
             shootPlayer(playerToShoot);
         }
         else if (decNextShot > 0)
+        {
+            if (type == TypeMoveableEnemy.Sniper)
+            {
+                AimingSniper(playerToShoot);
+            }
             decNextShot -= Time.deltaTime;
+        }
         else if (decNextShot < 0)
             decNextShot = 0;
     }
@@ -71,7 +80,10 @@ public class MovableEnemy : MonoBehaviour {
             isShooting = true;
             destination = GetSelectedSpawnPositionObject();
             GoToDestination();
-            playerToShoot = GetRandomPlayer();
+            if (!IsAiming)
+            {
+                playerToShoot = GetRandomPlayer();
+            }
         }
     }
 
@@ -172,31 +184,18 @@ public class MovableEnemy : MonoBehaviour {
         Vector2 direction;
         Transform projectilePosition = gameObject.transform;
         GameObject bullet;
+        
 
         if (type == TypeMoveableEnemy.Sniper)
         {
-            GameObject bulletLine = new GameObject("BulletLine");
-            bulletLine.transform.position = gameObject.transform.position;
-            bulletLine.AddComponent<LineRenderer>();
-            LineRenderer lr = bulletLine.GetComponent<LineRenderer>();
-            lr.startColor = Color.red;
-            lr.endColor = Color.red;
-            lr.startWidth = 0.03f;
-            lr.endWidth = 0.03f;
-            lr.SetPosition(0, gameObject.transform.position + new Vector3(0, 0, -0.1f));
-            lr.SetPosition(1, other.transform.position + new Vector3(0, 0, -0.1f));
-            lr.sortingOrder = 3;
-
-            GameObject.Destroy(bulletLine, nextShot - 0.1f);
-
+            IsAiming = false;
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/SniperBullet"));
+            Destroy(lr);
         }
         else if (type == TypeMoveableEnemy.Juggernaut)
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/JuggernautBullet"));
         else
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/EnemyBullet"));
-
-        bullet.GetComponent<Bullet>().damage = GetComponent<EnemyScript>().damage;
 
         bullet.transform.position = transform.position;
         direction = GetDistance(other);
@@ -208,6 +207,32 @@ public class MovableEnemy : MonoBehaviour {
         }
 
         bullet.GetComponent<Rigidbody2D>().velocity = direction.normalized * bulletSpeed;
+    }
+
+    void AimingSniper(GameObject other)
+    {
+        if (!IsAiming)
+        {
+            IsAiming = true;
+            bulletLine = new GameObject();
+
+            bulletLine.transform.position = gameObject.transform.position;
+            bulletLine.AddComponent<LineRenderer>();
+            lr = bulletLine.GetComponent<LineRenderer>();
+            lr.startColor = Color.red;
+            lr.endColor = Color.red;
+            lr.startWidth = 0.03f;
+            lr.endWidth = 0.03f;
+            lr.SetPosition(0, gameObject.transform.position + new Vector3(0, 0, -0.1f));
+            lr.SetPosition(1, other.transform.position + new Vector3(0, 0, -0.1f));
+
+        }
+        else
+        {
+            lr.SetPosition(0, gameObject.transform.position + new Vector3(0, 0, -0.1f));
+            lr.SetPosition(1, other.transform.position + new Vector3(0, 0, -0.1f));
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
