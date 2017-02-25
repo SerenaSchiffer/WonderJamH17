@@ -19,14 +19,22 @@ public class PlayableChar : MonoBehaviour
     Transform viseur;
     public bool falling;
 
+<<<<<<< HEAD
     protected int PlayerIdNumber;
     
+=======
+    public int PlayerIdNumber;
+
+    protected int meleeAttack;
+
+>>>>>>> bda2206ae50ff2c3449fce7d5e4433ad019a70ef
     //enum Controls {Attack = "R2" ,Melee = "R1" ,SpecialAttack = "L1" };
 
     // Useful Functions
     public virtual void Start()
     {
         myAnimator = GetComponent<Animator>();
+        meleeAttack = 0;
     }
     protected virtual void SpecialAttack(){ }
     protected virtual void RangeAttack() { }
@@ -34,6 +42,12 @@ public class PlayableChar : MonoBehaviour
     protected virtual void Dash() { }
     public void Update()
     {
+        if (meleeAttack > 0)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            meleeAttack--;
+            return;
+        }
         viseur = transform.GetChild(0);
         float xRight = Input.GetAxis("RightAxisXPlayer"+PlayerIdNumber);
         float yRight = Input.GetAxis("RightAxisYPlayer"+PlayerIdNumber) *-1;
@@ -46,11 +60,11 @@ public class PlayableChar : MonoBehaviour
         if (Input.GetButtonDown("R1Player"+PlayerIdNumber))
         {
             myAnimator.SetTrigger("meleeAttack");
+            myAnimator.SetBool("isWalking", false);
             MeleeAttack();
+            return;
         }
         
-        else myAnimator.SetBool("isShooting", false);
-
         float xLeft = Input.GetAxis("LeftAxisXPlayer" + PlayerIdNumber);
         float yLeft = Input.GetAxis("LeftAxisYPlayer" + PlayerIdNumber) * -1;
         Vector2 velocity = new Vector2(xLeft, yLeft);
