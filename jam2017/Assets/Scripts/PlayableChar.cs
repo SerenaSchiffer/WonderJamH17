@@ -22,10 +22,12 @@ public class PlayableChar : MonoBehaviour
 
     public void Update()
     {
-        float x = Input.GetAxisRaw("RightAxisXPlayer1");
-        float y = Input.GetAxisRaw("RightAxisYPlayer1");
+        float x = Input.GetAxis("RightAxisXPlayer1");
+        float y = Input.GetAxis("RightAxisYPlayer1")*-1;
         Transform viseur = transform.GetChild(0);
-        viseur.position = new Vector2(x, y) * 2;
+        viseur.position = new Vector2(x, y);
+        viseur.position = (viseur.position).normalized * 2;
+
 
         Debug.Log(x + " " + y);
         // Check for controls

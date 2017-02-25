@@ -48,11 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Guns.cs" />
      <Compile Include="Assets\Scripts\Melee.cs" />
-<<<<<<< HEAD
-     <Compile Include="Assets\Scripts\Pewdiepie_UI.cs" />
-=======
      <Compile Include="Assets\Scripts\MovableEnemy.cs" />
->>>>>>> 0a33fb6ccd47c8ce42e6131b19c878e596f1b06d
+     <Compile Include="Assets\Scripts\Pewdiepie_UI.cs" />
      <Compile Include="Assets\Scripts\PlayableChar.cs" />
      <Compile Include="Assets\Scripts\PlayablesCharac\PlayableAnonymous.cs" />
      <Compile Include="Assets\Scripts\PlayablesCharac\PlayableFarmer.cs" />
