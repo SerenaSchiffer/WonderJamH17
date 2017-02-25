@@ -7,43 +7,66 @@ public class Dialogue_pewdiepie : MonoBehaviour {
 
     public GameObject panel;
     public Text text;
+    public Text money;
+    public Text nuke;
 
-    private string[] waveTexts = { "There  is  no  tolerance  for  rebels.        \nLay  down  your  weapons  and  your  family\nWill  be  spared." };
+    private string[] waveTexts = { "There  is  no  tolerance  for  rebels.        \nLay  down  your  weapons  and  your  family\nWill  be  spared.", "Dialogue2", "Dialogue3", "Dialogue4", "Dialogue5" };
 
-    private int currentWave;
+    private int currentWave = 0;
     private int aliveFrames = 0;
-
-    void FixedUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            StartWave(0);
-    }
+    public float timeBetweenWaves;
+    private float elapseTime;
 
 	void Update ()
     {
         if (GameObject.Find("Dia_Pewds"))
         {
-            if (aliveFrames / 3 == waveTexts[currentWave].Length)
+            Debug.Log(waveTexts[currentWave-1].Length);
+            if (aliveFrames / 3 == waveTexts[currentWave-1].Length)
                 StartCoroutine(CloseWindow());
 
-            if (aliveFrames / 3 > waveTexts[currentWave].Length)
+            if (aliveFrames / 3 > waveTexts[currentWave-1].Length)
                 return;
 
-            text.text = waveTexts[0].Substring(0, aliveFrames / 3);
+            text.text = waveTexts[currentWave - 1].Substring(0, aliveFrames / 3);
             aliveFrames++;
         }
+        elapseTime += Time.deltaTime;
+
+        if(elapseTime >= timeBetweenWaves)
+        {
+            elapseTime = 0;
+            StartWave(currentWave);
+            Debug.Log("wave:" + currentWave);
+            currentWave++;
+        }
+
 	}
 
     void StartWave(int waveNumber)
     {
-        panel.SetActive(true);
-        currentWave = waveNumber;
-        aliveFrames = 0;
+        if (currentWave < waveTexts.Length)
+        {
+            panel.SetActive(true);
+            currentWave = waveNumber;
+            aliveFrames = 0;
+            
+        }
+        else
+        {
+            KillPlayers();
+        }
+        
     }
 
     IEnumerator CloseWindow()
     {
         yield return new WaitForSeconds(3f);
         panel.SetActive(false);
+    }
+
+    void KillPlayers()
+    {
+
     }
 }
