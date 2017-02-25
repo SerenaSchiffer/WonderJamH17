@@ -55,11 +55,11 @@ public class PlayableChar : MonoBehaviour
         if (Input.GetButtonDown("R1Player"+PlayerIdNumber))
         {
             myAnimator.SetTrigger("meleeAttack");
+            myAnimator.SetBool("isWalking", false);
             MeleeAttack();
+            return;
         }
         
-        else myAnimator.SetBool("isShooting", false);
-
         float xLeft = Input.GetAxis("LeftAxisXPlayer" + PlayerIdNumber);
         float yLeft = Input.GetAxis("LeftAxisYPlayer" + PlayerIdNumber) * -1;
         Vector2 velocity = new Vector2(xLeft, yLeft);
