@@ -24,7 +24,7 @@ public class PlayableAnonymous : PlayableChar {
     {
         if (nextShot == 0)
         {
-            nextShot = 0.15f;
+            nextShot = 0.08f;
             Vector2 direction = viseur.position - transform.position;
             direction.Normalize();
             Debug.Log(direction.x + " " + direction.y);
