@@ -96,7 +96,7 @@ public class Pewdiepie_UI : MonoBehaviour {
         switch (selectedAttack)
         {
             case SelectedAttack.Soldier:
-                GameObject soldiers = (GameObject)Instantiate(Resources.Load("Prefabs/Soldier"));
+                GameObject soldiers = (GameObject)Instantiate(Resources.Load("Prefabs/Soldiers"));
                 soldiers.transform.position = spawnPosition;
                 soldiers.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
                 break;
