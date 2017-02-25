@@ -14,6 +14,7 @@ public class PlayableChar : MonoBehaviour
     protected Guns rangWeapon;
     protected float fireRate;
     protected float nextShot;
+    protected Animator myAnimator;
     public int damage;
     Transform viseur;
     public bool falling;
@@ -25,6 +26,7 @@ public class PlayableChar : MonoBehaviour
     // Useful Functions
     public virtual void Start()
     {
+        myAnimator = GetComponent<Animator>();
     }
     protected virtual void SpecialAttack(){ }
     protected virtual void RangeAttack() { }
@@ -40,12 +42,14 @@ public class PlayableChar : MonoBehaviour
             viseur.position = (new Vector2(xRight, yRight)).normalized;
             viseur.localPosition = Vector2.ClampMagnitude(viseur.position, 2);
         }
-
-        //Todelete
-        if (Input.GetButton("R1Player"+PlayerIdNumber))
+        
+        if (Input.GetButtonDown("R1Player"+PlayerIdNumber))
         {
-            RangeAttack();
+            myAnimator.SetTrigger("meleeAttack");
+            MeleeAttack();
         }
+        
+        else myAnimator.SetBool("isShooting", false);
 
         float xLeft = Input.GetAxis("LeftAxisXPlayer" + PlayerIdNumber);
         float yLeft = Input.GetAxis("LeftAxisYPlayer" + PlayerIdNumber) * -1;
@@ -54,12 +58,16 @@ public class PlayableChar : MonoBehaviour
         if (xLeft <0)
         {
             //this.transform.localScale = new Vector3(this.transform.localScale.x * -1, this.transform.localScale.y, this.transform.localScale.z);
-            this.GetComponent<SpriteRenderer>().flipX = true;
-        }else if(xLeft > 0)
-        {
             this.GetComponent<SpriteRenderer>().flipX = false;
+            myAnimator.SetBool("isWalking", true);
+        }
+        else if(xLeft > 0)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+            myAnimator.SetBool("isWalking", true);
             //this.transform.localScale = new Vector3(this.transform.localScale.x * -1, this.transform.localScale.y, this.transform.localScale.z);
         }
+        else  myAnimator.SetBool("isWalking", false);
 
         if (falling)
         {
