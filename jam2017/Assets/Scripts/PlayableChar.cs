@@ -21,7 +21,7 @@ public class PlayableChar : MonoBehaviour
     public bool falling;
     public int PlayerIdNumber;
     
-
+    private int maxHealth;
     protected int meleeAttack;
 
     //enum Controls {Attack = "R2" ,Melee = "R1" ,SpecialAttack = "L1" };
@@ -29,6 +29,7 @@ public class PlayableChar : MonoBehaviour
     // Useful Functions
     public virtual void Start()
     {
+        maxHealth = healthPoints;
         myAnimator = GetComponent<Animator>();
         meleeAttack = 0;
         PlayerIdNumber = 1; //TODELETE
@@ -65,7 +66,13 @@ public class PlayableChar : MonoBehaviour
             MeleeAttack();
             return;
         }
-        
+        if(Input.GetAxis("R2Player"+PlayerIdNumber)<-0.8)
+        {
+            myAnimator.SetBool("isShooting", true);
+            RangeAttack();
+        }
+        else myAnimator.SetBool("isShooting", false);
+
         float xLeft = Input.GetAxis("LeftAxisXPlayer" + PlayerIdNumber);
         float yLeft = Input.GetAxis("LeftAxisYPlayer" + PlayerIdNumber) * -1;
         Vector2 velocity = new Vector2(xLeft, yLeft);
@@ -105,6 +112,17 @@ public class PlayableChar : MonoBehaviour
     protected virtual void UseSpecial()
     {
         // Effects of the special attack
+    }
+
+    public void SetHp(int hp)
+    {
+        if (healthPoints + hp > maxHealth)
+        {
+            healthPoints = maxHealth;
+        } else;
+        {
+            healthPoints += hp;
+        }
     }
 
 }
