@@ -16,6 +16,7 @@ public class PlayableChar : MonoBehaviour
     protected float nextShot;
     public int damage;
     Transform viseur;
+    public bool falling;
 
     public int PlayerIdNumber;
     
@@ -60,7 +61,21 @@ public class PlayableChar : MonoBehaviour
             //this.transform.localScale = new Vector3(this.transform.localScale.x * -1, this.transform.localScale.y, this.transform.localScale.z);
         }
 
-        this.GetComponent<Rigidbody2D>().velocity= velocity*movSpeed;
+        if (falling)
+        {
+            if (xLeft == 0 && yLeft == 0)
+            {
+
+            }
+            else
+            {
+                this.GetComponent<Rigidbody2D>().velocity = (velocity * movSpeed) / 3;
+            }
+        }
+        else
+        {
+            this.GetComponent<Rigidbody2D>().velocity = velocity * movSpeed;
+        }
 
     }
 

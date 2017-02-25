@@ -82,31 +82,30 @@ public class Pewdiepie_UI : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Vector2 position = GameObject.Find("LeftSpawnPosition").transform.position;
-            SpawnEnemy(position, SelectedSpawnPosition.Left);
+            SpawnEnemy(position);
         }
         
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             Vector2 position = GameObject.Find("RightSpawnPosition").transform.position;
-            SpawnEnemy(position, SelectedSpawnPosition.Right);
+            SpawnEnemy(position);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Vector2 position = GameObject.Find("BottomSpawnPosition").transform.position;
-            SpawnEnemy(position, SelectedSpawnPosition.Bottom);
+            SpawnEnemy(position);
         }
     }
 
-    private void SpawnEnemy(Vector2 spawnPosition, SelectedSpawnPosition selectedSpawnPosition)
+    private void SpawnEnemy(Vector2 spawnPosition)
     {
         switch (selectedAttack)
         {
             case SelectedAttack.Soldier:
-                GameObject soldiers = (GameObject)Instantiate(Resources.Load("Prefabs/Soldiers"));
+                GameObject soldiers = (GameObject)Instantiate(Resources.Load("Prefabs/Soldier"));
                 soldiers.transform.position = spawnPosition;
                 soldiers.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
-                SetFollowSoldierPosition(soldiers, spawnPosition, selectedSpawnPosition);
                 break;
 
             case SelectedAttack.Robot:
@@ -125,26 +124,6 @@ public class Pewdiepie_UI : MonoBehaviour {
 
             case SelectedAttack.Missile:
                 Debug.Log("Spawn missile");
-                break;
-        }
-    }
-
-    private void SetFollowSoldierPosition(GameObject soldiers, Vector2 spawnPosition, SelectedSpawnPosition selectedSpawnPosition)
-    {
-        Transform followSoldier1 = soldiers.transform.GetChild(1);
-        Transform followSoldier2 = soldiers.transform.GetChild(2);
-
-        switch (selectedSpawnPosition)
-        {
-            case SelectedSpawnPosition.Left:
-            case SelectedSpawnPosition.Right:
-                followSoldier1.position = spawnPosition + new Vector2(0, 0.75f);
-                followSoldier2.position = spawnPosition + new Vector2(0, -0.75f);
-                break;
-
-            case SelectedSpawnPosition.Bottom:
-                followSoldier1.position = spawnPosition + new Vector2(0.5f, 0);
-                followSoldier2.position = spawnPosition + new Vector2(-0.5f, 0);
                 break;
         }
     }

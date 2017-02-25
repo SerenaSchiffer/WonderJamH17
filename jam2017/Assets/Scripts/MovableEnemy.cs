@@ -23,8 +23,8 @@ public class MovableEnemy : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -48,6 +48,7 @@ public class MovableEnemy : MonoBehaviour {
             if (direction.magnitude < 0.1f)
             {
                 direction = Vector2.zero;
+                AddVelocity(0);
             }
             else
             {
