@@ -16,6 +16,7 @@ public class PlayableChar : MonoBehaviour
     protected float nextShot;
     protected Animator myAnimator;
     public int damage;
+    public int meleeDamage;
     Transform viseur;
     public bool falling;
 
