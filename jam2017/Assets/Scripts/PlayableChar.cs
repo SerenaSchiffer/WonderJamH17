@@ -15,24 +15,30 @@ public class PlayableChar : MonoBehaviour
     protected float fireRate;
     protected float nextShot;
     public int damage;
+    Transform viseur;
 
     public int PlayerIdNumber;
     
     //enum Controls {Attack = "R2" ,Melee = "R1" ,SpecialAttack = "L1" };
 
     // Useful Functions
-    public virtual void Start(){ }
+    public virtual void Start()
+    {
+    }
     protected virtual void SpecialAttack(){ }
     protected virtual void RangeAttack() { }
     protected virtual void MeleeAttack() { }
     protected virtual void Dash() { }
     public void Update()
     {
+        viseur = transform.GetChild(0);
         float xRight = Input.GetAxis("RightAxisXPlayer"+PlayerIdNumber);
         float yRight = Input.GetAxis("RightAxisYPlayer"+PlayerIdNumber) *-1;
-        Transform viseur = transform.GetChild(0);
-        viseur.position = (new Vector2(xRight, yRight)).normalized;
-        viseur.localPosition = Vector2.ClampMagnitude(viseur.position,2);
+        if (xRight != 0 || yRight != 0)
+        {
+            viseur.position = (new Vector2(xRight, yRight)).normalized;
+            viseur.localPosition = Vector2.ClampMagnitude(viseur.position, 2);
+        }
 
         //Todelete
         if (Input.GetButton("R1Player"+PlayerIdNumber))
