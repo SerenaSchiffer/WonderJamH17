@@ -172,9 +172,25 @@ public class MovableEnemy : MonoBehaviour {
         Vector2 direction;
         Transform projectilePosition = gameObject.transform;
         GameObject bullet;
+        GameObject bulletLine = new GameObject();
 
         if (type == TypeMoveableEnemy.Sniper)
+        {
+            bulletLine.transform.position = gameObject.transform.position;
+            bulletLine.AddComponent<LineRenderer>();
+            LineRenderer lr = bulletLine.GetComponent<LineRenderer>();
+
+            lr.startColor = Color.red;
+            lr.endColor = Color.red;
+            lr.startWidth = 0.01f;
+            lr.endWidth = 0.01f;
+            lr.SetPosition(0, gameObject.transform.position);
+            lr.SetPosition(1, gameObject.transform.position);
+
+            GameObject.Destroy(bulletLine, 0.5f);
+
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/SniperBullet"));
+        }
         else if (type == TypeMoveableEnemy.Juggernaut)
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/JuggernautBullet"));
         else
