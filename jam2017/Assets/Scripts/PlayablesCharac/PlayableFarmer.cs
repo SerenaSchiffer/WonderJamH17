@@ -41,6 +41,7 @@ public class PlayableFarmer : PlayableChar {
                 float randSpeed = Random.Range(8f, 11f);
                 bullet.GetComponent<Rigidbody2D>().velocity = direction * randSpeed;
                 bullet.GetComponent<Bullet>().damage = this.damage;
+                bullet.GetComponent<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];
             }
         }
         if (nextShot > 0)

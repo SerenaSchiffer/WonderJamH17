@@ -45,6 +45,7 @@ public class PlayableAnonymous : PlayableChar {
             //bullet.transform.position = bulletSpawn.position;
             bullet.GetComponent<Rigidbody2D>().velocity = direction * 12;
             bullet.GetComponent<Bullet>().damage = this.damage;
+            bullet.GetComponent<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];
         }
         if(nextShot > 0)
         {
