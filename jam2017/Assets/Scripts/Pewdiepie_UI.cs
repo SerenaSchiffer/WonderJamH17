@@ -82,40 +82,44 @@ public class Pewdiepie_UI : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Vector2 position = GameObject.Find("LeftSpawnPosition").transform.position;
-            SpawnEnemy(position);
+            SpawnEnemy(position, SelectedSpawnPosition.Left);
         }
         
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             Vector2 position = GameObject.Find("RightSpawnPosition").transform.position;
-            SpawnEnemy(position);
+            SpawnEnemy(position, SelectedSpawnPosition.Right);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Vector2 position = GameObject.Find("BottomSpawnPosition").transform.position;
-            SpawnEnemy(position);
+            SpawnEnemy(position, SelectedSpawnPosition.Bottom);
         }
     }
 
-    private void SpawnEnemy(Vector2 spawnPosition)
+    private void SpawnEnemy(Vector2 spawnPosition, SelectedSpawnPosition spp)
     {
+        GameObject spawnedAttack;
+
         switch (selectedAttack)
         {
             case SelectedAttack.Soldier:
-                GameObject soldiers = (GameObject)Instantiate(Resources.Load("Prefabs/Soldier"));
-                soldiers.transform.position = spawnPosition;
-                soldiers.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
+                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Soldier"));
+                spawnedAttack.transform.position = spawnPosition;
+                spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
                 break;
 
             case SelectedAttack.Robot:
-                GameObject robots = (GameObject)Instantiate(Resources.Load("Prefabs/Robot"));
-                robots.transform.position = spawnPosition;
-                robots.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Robot;
+                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Robot"));
+                spawnedAttack.transform.position = spawnPosition;
+                spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Robot;
                 break;
 
             case SelectedAttack.Juggernaut:
-                
+                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Juggernaut"));
+                spawnedAttack.transform.position = spawnPosition;
+                spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(spp);
                 break;
 
             case SelectedAttack.Sniper:
