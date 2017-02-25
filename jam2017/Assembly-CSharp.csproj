@@ -54,6 +54,10 @@
      <Compile Include="Assets\Scripts\MovableEnemy.cs" />
 >>>>>>> 0a33fb6ccd47c8ce42e6131b19c878e596f1b06d
      <Compile Include="Assets\Scripts\PlayableChar.cs" />
+     <Compile Include="Assets\Scripts\PlayablesCharac\PlayableAnonymous.cs" />
+     <Compile Include="Assets\Scripts\PlayablesCharac\PlayableFarmer.cs" />
+     <Compile Include="Assets\Scripts\PlayablesCharac\PlayableRebel.cs" />
+     <Compile Include="Assets\Scripts\PlayablesCharac\PlayableSuit.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity5.5.0f3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
