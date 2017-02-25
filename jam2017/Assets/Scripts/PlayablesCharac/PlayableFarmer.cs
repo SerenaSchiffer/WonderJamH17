@@ -13,7 +13,6 @@ public class PlayableFarmer : PlayableChar {
     {
         melWeapon = new PitchFork();
         rangWeapon = new Shotgun();
-        Debug.Log("Yolo");
         nextShot = 0;
         viseur = transform.GetChild(0);
         PlayerIdNumber = ID;
