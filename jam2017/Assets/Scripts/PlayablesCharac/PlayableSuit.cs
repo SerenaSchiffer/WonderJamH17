@@ -33,6 +33,7 @@ public class PlayableSuit : PlayableChar {
             bullet.transform.position = transform.position;
             bullet.GetComponent<Rigidbody2D>().velocity = direction * 10;
             bullet.GetComponent<Bullet>().damage = this.damage;
+            bullet.GetComponent<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];
         }
         if (nextShot > 0)
         {
