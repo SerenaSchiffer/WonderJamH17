@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayableAnonymous : PlayableChar {
 
     Transform viseur;
-
+    public static int ID;
     // Use this for initialization
     public override void Start()
     {
@@ -13,6 +13,7 @@ public class PlayableAnonymous : PlayableChar {
         rangWeapon = new Uzi();
         viseur = transform.GetChild(0);
         nextShot = 0;
+        PlayerIdNumber = ID;
     }
 
     protected override void UseSpecial()
@@ -42,6 +43,11 @@ public class PlayableAnonymous : PlayableChar {
         {
             nextShot = 0;
         }
+    }
+
+    public static void UpdateID(int id)
+    {
+        ID = id;
     }
 
 }

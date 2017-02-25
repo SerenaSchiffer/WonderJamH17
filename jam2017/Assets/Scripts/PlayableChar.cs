@@ -19,7 +19,7 @@ public class PlayableChar : MonoBehaviour
     Transform viseur;
     public bool falling;
 
-    public int PlayerIdNumber;
+    protected int PlayerIdNumber;
     
     //enum Controls {Attack = "R2" ,Melee = "R1" ,SpecialAttack = "L1" };
 
@@ -91,4 +91,5 @@ public class PlayableChar : MonoBehaviour
     {
         // Effects of the special attack
     }
+
 }

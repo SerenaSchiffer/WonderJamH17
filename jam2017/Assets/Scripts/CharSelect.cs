@@ -49,6 +49,50 @@ public class CharSelect : MonoBehaviour {
         {
             axis1 = false;
         }
+        if(Input.GetButtonDown("P1Select"))
+        {
+            switch (playerSelected[0])
+            {
+                case 0:
+                    if (!selected1)
+                    {
+                        images[0].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected1 = true;
+                        PlayableSuit.UpdateID(1);
+                    }
+                    break;
+                case 1:
+                    if (!selected2)
+                    {
+                        images[0].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected2 = true;
+                        PlayableRebel.UpdateID(1);
+                    }
+                    break;
+                case 2:
+                    if (!selected3)
+                    {
+                        images[0].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected3 = true;
+                        PlayableAnonymous.UpdateID(1);
+                    }
+                    break;
+                case 3:
+                    if (!selected4)
+                    {
+                        images[0].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                        selected4 = true;
+                        PlayableFarmer.UpdateID(1);
+                    }
+                    break;
+
+
+
+
+
+
+            }
+        }
 
 
         //////////////////Player2
