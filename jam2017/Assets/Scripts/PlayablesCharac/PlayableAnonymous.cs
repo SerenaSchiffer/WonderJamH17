@@ -32,7 +32,17 @@ public class PlayableAnonymous : PlayableChar {
             Debug.Log(direction.x + " " + direction.y);
             GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/UziBullet"));
             bullet.transform.localScale /= 2;
-            bullet.transform.position = transform.position;
+
+            Transform bulletSpawn = transform;
+            if(viseur.transform.position.x - gameObject.transform.position.x > 0)
+            {
+                bulletSpawn.position = new Vector3(bulletSpawn.position.x + 140, bulletSpawn.position.y, 0);
+            }else if(viseur.transform.position.x - gameObject.transform.position.x < 0)
+            {
+                bulletSpawn.position = new Vector3(bulletSpawn.position.x - 140, bulletSpawn.position.y, 0);
+            }
+
+            //bullet.transform.position = bulletSpawn.position;
             bullet.GetComponent<Rigidbody2D>().velocity = direction * 12;
             bullet.GetComponent<Bullet>().damage = this.damage;
         }

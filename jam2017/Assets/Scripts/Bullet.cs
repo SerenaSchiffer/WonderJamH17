@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour {
         if(other.tag == "Enemy")
         {
             Destroy(this.gameObject);
-            other.GetComponent<EnemyScript>().Damage(damage);
+            other.GetComponentInParent<EnemyScript>().Damage(damage);
         }
     }
 }

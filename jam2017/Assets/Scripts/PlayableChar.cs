@@ -59,6 +59,15 @@ public class PlayableChar : MonoBehaviour
             viseur.localPosition = Vector2.ClampMagnitude(viseur.position, 2);
         }
         
+        if(xRight > 0.2)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if(xRight < -0.2)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
+
         if (Input.GetButtonDown("R1Player"+PlayerIdNumber))
         {
             myAnimator.SetTrigger("meleeAttack");
@@ -80,12 +89,11 @@ public class PlayableChar : MonoBehaviour
         if (xLeft <0)
         {
             //this.transform.localScale = new Vector3(this.transform.localScale.x * -1, this.transform.localScale.y, this.transform.localScale.z);
-            this.GetComponent<SpriteRenderer>().flipX = false;
+            
             myAnimator.SetBool("isWalking", true);
         }
         else if(xLeft > 0)
         {
-            this.GetComponent<SpriteRenderer>().flipX = true;
             myAnimator.SetBool("isWalking", true);
             //this.transform.localScale = new Vector3(this.transform.localScale.x * -1, this.transform.localScale.y, this.transform.localScale.z);
         }
@@ -119,7 +127,7 @@ public class PlayableChar : MonoBehaviour
         if (healthPoints + hp > maxHealth)
         {
             healthPoints = maxHealth;
-        } else;
+        } else
         {
             healthPoints += hp;
         }
