@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Guns.cs" />
      <Compile Include="Assets\Scripts\Melee.cs" />
+     <Compile Include="Assets\Scripts\Pewdiepie_UI.cs" />
      <Compile Include="Assets\Scripts\PlayableChar.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
