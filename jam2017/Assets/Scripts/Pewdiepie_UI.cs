@@ -55,7 +55,10 @@ public class Pewdiepie_UI : MonoBehaviour {
 	void Update () {
         // Je m'excuse
         if (Hack.beingHacked)
+        {
+            money = 0;
             return;
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             selectedAttack = SelectedAttack.Soldier;
