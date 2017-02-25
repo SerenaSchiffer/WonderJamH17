@@ -25,6 +25,7 @@ public class PlayableAnonymous : PlayableChar {
         direction.Normalize();
         Debug.Log(direction.x + " " + direction.y);
         GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Bullet"));
+        bullet.transform.localScale /= 2;
         bullet.transform.position = transform.position;
         bullet.GetComponent<Rigidbody2D>().velocity = direction * 10;
     }
