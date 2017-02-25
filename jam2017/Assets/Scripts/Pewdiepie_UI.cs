@@ -44,7 +44,7 @@ public class Pewdiepie_UI : MonoBehaviour {
         {
             yield return new WaitForSeconds(1f);
             money += moneyFactor;
-            moneyFactor += 10;
+            moneyFactor += 2;
         }
         yield return null;
     }
