@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Guns
 {
     protected AudioClip sfx;
+    protected float timeToLive;
     protected GameObject bullet;
 
     public Guns()
@@ -41,6 +42,5 @@ public class Shotgun : Guns
 {
     public Shotgun() : base() // Constructeur
     {
-
     }
 }
