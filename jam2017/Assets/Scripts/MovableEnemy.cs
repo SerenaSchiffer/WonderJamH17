@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -67,8 +68,17 @@ public class MovableEnemy : MonoBehaviour {
             isShooting = true;
             destination = GetSelectedSpawnPositionObject();
             GoToDestination();
-            //playerToShoot =
+            playerToShoot = GetRandomPlayer();
         }
+    }
+
+    private GameObject GetRandomPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        int indiceRandom = UnityEngine.Random.Range(0, 4);
+        Debug.Log(indiceRandom);
+        return new GameObject();
     }
 
     private void GoToDestination()
@@ -161,7 +171,7 @@ public class MovableEnemy : MonoBehaviour {
 
         if (type == TypeMoveableEnemy.Robot || type == TypeMoveableEnemy.Juggernaut)
         {
-            float random = Random.Range(-spreadShoot, spreadShoot);
+            float random = UnityEngine.Random.Range(-spreadShoot, spreadShoot);
             direction = Quaternion.AngleAxis(random, Vector3.forward) * direction;
         }
 

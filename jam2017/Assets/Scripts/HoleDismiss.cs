@@ -21,8 +21,7 @@ public class HoleDismiss : MonoBehaviour {
         }
         else
         {
-            Debug.Log("It is time to die");
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 	}
 }

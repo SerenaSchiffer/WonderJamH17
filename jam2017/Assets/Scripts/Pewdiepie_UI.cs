@@ -14,9 +14,9 @@ enum SelectedAttack
 
 public enum SelectedSpawnPosition
 {
-    Left,
-    Right,
-    Bottom
+    Left = 1,
+    Right = 3,
+    Bottom = 2
 }
 
 public class Pewdiepie_UI : MonoBehaviour {
@@ -70,7 +70,7 @@ public class Pewdiepie_UI : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            selectedAttack = SelectedAttack.Soldier;
+            selectedAttack = SelectedAttack.Missile;
         }
         foreach (GameObject g in unit_icons)
             g.GetComponent<Image>().color = Color.white;
@@ -98,7 +98,7 @@ public class Pewdiepie_UI : MonoBehaviour {
         }
     }
 
-    private void SpawnEnemy(Vector2 spawnPosition, SelectedSpawnPosition spp)
+    private void SpawnEnemy(Vector2 spawnPosition, SelectedSpawnPosition ssp)
     {
         GameObject spawnedAttack;
 
@@ -119,15 +119,18 @@ public class Pewdiepie_UI : MonoBehaviour {
             case SelectedAttack.Juggernaut:
                 spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Juggernaut"));
                 spawnedAttack.transform.position = spawnPosition;
-                spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(spp);
+                spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
                 break;
 
             case SelectedAttack.Sniper:
-                Debug.Log("Spawn sniper");
+                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Sniper"));
+                spawnedAttack.transform.position = spawnPosition;
+                spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
                 break;
 
             case SelectedAttack.Missile:
-                Debug.Log("Spawn missile");
+                GetComponent<Missile>().SelectLocation((int)ssp);
+                GetComponent<Missile>().missileIsTriggered = true;
                 break;
         }
     }

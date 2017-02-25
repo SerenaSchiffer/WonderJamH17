@@ -8,6 +8,7 @@ public class Missile : MonoBehaviour {
     public float timeToStrike;
     public float damage;
     public bool missileIsTriggered;
+    private int locationSelected = 0;
     private float valuePerFrame = 0;
     GameObject MissileSight;
     Transform nukeTransform;
@@ -22,7 +23,7 @@ public class Missile : MonoBehaviour {
 	void Update () {
         if(missileIsTriggered)
         {
-            MissileTriggered(1);
+            MissileTriggered(locationSelected);
             valuePerFrame = (float)(((float)MissileSight.transform.GetChild(0).transform.position.y - 0.871) / ((float)timeToStrike / (float)Time.deltaTime));
             missileIsTriggered = false;
         }
@@ -37,7 +38,6 @@ public class Missile : MonoBehaviour {
 
             if (actualTime <= timeToStrike)
             {
-                Debug.Log(nukeTransform.position.y);
                 actualTime += Time.deltaTime;
                 nukeTransform.position = new Vector3(nukeTransform.position.x, nukeTransform.position.y-valuePerFrame, nukeTransform.position.z);
                 if(MissileSight.transform.GetChild(0).transform.position.y<=0.571)
@@ -82,5 +82,10 @@ public class Missile : MonoBehaviour {
         Destroy(MissileSight);
 
         actualTime = 0;
+    }
+
+    public void SelectLocation(int location)
+    {
+        locationSelected = location;
     }
 }
