@@ -24,9 +24,10 @@ public class Pewdiepie_UI : MonoBehaviour {
     public GameObject[] unit_icons;
     public Text myMoney;
     
-    private int money;
+    private long money;
     private bool raiseMoney;
     private SelectedAttack selectedAttack;
+    bool nukeActivated;
 
 	// Use this for initialization
 	void Start () {
@@ -38,20 +39,30 @@ public class Pewdiepie_UI : MonoBehaviour {
 	
     IEnumerator AddMoney()
     {
-        int moneyFactor = 10;
-
-        while (raiseMoney)
+        if (!nukeActivated)
         {
-            yield return new WaitForSeconds(1f);
-            money += moneyFactor;
-            moneyFactor += 10;
+            int moneyFactor = 10;
+
+            while (raiseMoney)
+            {
+                yield return new WaitForSeconds(1f);
+                if (Hack.beingHacked)
+                    continue;
+                money += moneyFactor;
+                moneyFactor += 2;
+            }
+            yield return null;
         }
-        yield return null;
     }
 
 	// Update is called once per frame
 	void Update () {
         // Je m'excuse
+        if (Hack.beingHacked)
+        {
+            money = 0;
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             selectedAttack = SelectedAttack.Soldier;
@@ -72,11 +83,18 @@ public class Pewdiepie_UI : MonoBehaviour {
         {
             selectedAttack = SelectedAttack.Missile;
         }
+        if(Input.GetKeyDown(KeyCode.Space) || nukeActivated)
+        {
+            Nuke();
+        }
         foreach (GameObject g in unit_icons)
             g.GetComponent<Image>().color = Color.white;
         unit_icons[(int)selectedAttack].GetComponent<Image>().color = Color.yellow;
-        
-        myMoney.text = money + " $";
+
+        if (!nukeActivated)
+        {
+            myMoney.text = money + " $";
+        }
 
 
         if(Input.GetKeyDown(KeyCode.LeftArrow))
@@ -105,33 +123,88 @@ public class Pewdiepie_UI : MonoBehaviour {
         switch (selectedAttack)
         {
             case SelectedAttack.Soldier:
-                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Soldier"));
-                spawnedAttack.transform.position = spawnPosition;
-                spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
+                if (money >= 150)
+                {
+                    spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Soldier"));
+                    spawnedAttack.transform.position = spawnPosition;
+                    spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
+                    money -= spawnedAttack.GetComponent<MovableEnemy>().spawnCost;
+                }
+                else
+                {
+                    //Gerer feedback
+                }
                 break;
 
             case SelectedAttack.Robot:
-                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Robot"));
-                spawnedAttack.transform.position = spawnPosition;
-                spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Robot;
+                if (money >= 350)
+                {
+                    spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Robot"));
+                    spawnedAttack.transform.position = spawnPosition;
+                    spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Robot;
+                    money -= spawnedAttack.GetComponent<MovableEnemy>().spawnCost;
+                }
+                else
+                {
+                    //Gerer feedback
+                }
+
                 break;
 
             case SelectedAttack.Juggernaut:
-                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Juggernaut"));
-                spawnedAttack.transform.position = spawnPosition;
-                spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
+                if (money >= 500)
+                {
+                    spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Juggernaut"));
+                    spawnedAttack.transform.position = spawnPosition;
+                    spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
+                    money -= spawnedAttack.GetComponent<MovableEnemy>().spawnCost;
+                }
+                else
+                {
+                    //Gerer feedback
+                }
+                
                 break;
 
             case SelectedAttack.Sniper:
-                spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Sniper"));
-                spawnedAttack.transform.position = spawnPosition;
-                spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
+                if (money >= 750)
+                {
+                    spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Sniper"));
+                    spawnedAttack.transform.position = spawnPosition;
+                    spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
+                    money -= spawnedAttack.GetComponent<MovableEnemy>().spawnCost;
+                }
+                else
+                {
+                    //Gerer feedback
+                }
+
                 break;
 
             case SelectedAttack.Missile:
-                GetComponent<Missile>().SelectLocation((int)ssp);
-                GetComponent<Missile>().missileIsTriggered = true;
+                if (money >= 1000)
+                {
+                    GetComponentInParent<Missile>().SelectLocation((int)ssp);
+                    GetComponentInParent<Missile>().missileIsTriggered = true;
+                    money -= 1000;
+                }
+                else
+                {
+                    //Gerer feedback
+                }
+                
                 break;
         }
+    }
+
+    public void ActivateNuke()
+    {
+        nukeActivated = true;
+        money = 0;
+    }
+
+    void Nuke()
+    {
+
     }
 }

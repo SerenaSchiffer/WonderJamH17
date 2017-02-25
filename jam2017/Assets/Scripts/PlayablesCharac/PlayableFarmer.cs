@@ -37,10 +37,25 @@ public class PlayableFarmer : PlayableChar {
                 float random = Random.Range(-spread, spread);
                 direction = Quaternion.AngleAxis(random, Vector3.forward) * direction;
                 GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/ShotgunBullet"));
-                bullet.transform.position = transform.position;
+
+
+                Vector2 bulletSpawn = transform.position;
+                if (viseur.transform.position.x - gameObject.transform.position.x > 0)
+                {
+                    bulletSpawn = new Vector2(bulletSpawn.x + 0.25f, bulletSpawn.y);
+                }
+                else if (viseur.transform.position.x - gameObject.transform.position.x < 0)
+                {
+                    bulletSpawn = new Vector2(bulletSpawn.x - 0.25f, bulletSpawn.y);
+                }
+
+                bullet.transform.localPosition = bulletSpawn;
+
+
                 float randSpeed = Random.Range(8f, 11f);
                 bullet.GetComponent<Rigidbody2D>().velocity = direction * randSpeed;
                 bullet.GetComponent<Bullet>().damage = this.damage;
+                bullet.GetComponent<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];
             }
         }
         if (nextShot > 0)

@@ -20,7 +20,10 @@ public class PlayableChar : MonoBehaviour
     Transform viseur;
     public bool falling;
     public int PlayerIdNumber;
-    
+
+    public Collider2D regularCollider;
+    public Collider2D flippedCollider;
+
     private int maxHealth;
     protected int meleeAttack;
 
@@ -62,10 +65,14 @@ public class PlayableChar : MonoBehaviour
         if(xRight > 0.2)
         {
             this.GetComponent<SpriteRenderer>().flipX = true;
+            flippedCollider.gameObject.SetActive(true);
+            regularCollider.gameObject.SetActive(false);
         }
         else if(xRight < -0.2)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
+            flippedCollider.gameObject.SetActive(false);
+            regularCollider.gameObject.SetActive(true);
         }
 
         if (Input.GetButtonDown("R1Player"+PlayerIdNumber))
@@ -129,6 +136,7 @@ public class PlayableChar : MonoBehaviour
             healthPoints = maxHealth;
         } else
         {
+            Debug.Log("can you plz" + hp);
             healthPoints += hp;
         }
     }

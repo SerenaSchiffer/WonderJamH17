@@ -17,9 +17,16 @@ public class PlayableAnonymous : PlayableChar {
         base.Start();
     }
 
+    public void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+            UseSpecial();
+    }
+
     protected override void UseSpecial()
     {
         // Effects of the special attack
+        GameObject.Find("EventSystem").GetComponent<Hack>().TurnOnHacking();
     }
 
     protected override void RangeAttack()
@@ -33,18 +40,22 @@ public class PlayableAnonymous : PlayableChar {
             GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/UziBullet"));
             bullet.transform.localScale /= 2;
 
-            Transform bulletSpawn = transform;
-            if(viseur.transform.position.x - gameObject.transform.position.x > 0)
+            Vector2 bulletSpawn = transform.position;
+            if (viseur.transform.position.x - gameObject.transform.position.x > 0)
             {
-                bulletSpawn.position = new Vector3(bulletSpawn.position.x + 140, bulletSpawn.position.y, 0);
-            }else if(viseur.transform.position.x - gameObject.transform.position.x < 0)
-            {
-                bulletSpawn.position = new Vector3(bulletSpawn.position.x - 140, bulletSpawn.position.y, 0);
+                bulletSpawn = new Vector2(bulletSpawn.x + 0.25f, bulletSpawn.y);
             }
+            else if (viseur.transform.position.x - gameObject.transform.position.x < 0)
+            {
+                bulletSpawn = new Vector2(bulletSpawn.x - 0.25f, bulletSpawn.y);
+            }
+
+            bullet.transform.localPosition = bulletSpawn;
 
             //bullet.transform.position = bulletSpawn.position;
             bullet.GetComponent<Rigidbody2D>().velocity = direction * 12;
             bullet.GetComponent<Bullet>().damage = this.damage;
+            bullet.GetComponent<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];
         }
         if(nextShot > 0)
         {
