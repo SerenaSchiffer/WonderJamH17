@@ -12,6 +12,8 @@ public class PlayableChar : MonoBehaviour
 
     protected Melee melWeapon;
     protected Guns rangWeapon;
+    protected float fireRate;
+    protected float nextShot;
 
     int PlayerIdNumber = 1;
     
@@ -23,25 +25,24 @@ public class PlayableChar : MonoBehaviour
     protected virtual void RangeAttack() { }
     public void Update()
     {
-        
         float xRight = Input.GetAxis("RightAxisXPlayer"+PlayerIdNumber);
         float yRight = Input.GetAxis("RightAxisYPlayer" + PlayerIdNumber) *-1;
         Transform viseur = transform.GetChild(0);
         viseur.position = new Vector2(xRight*Mathf.PI, yRight* Mathf.PI);
-        viseur.position = Vector2.ClampMagnitude(viseur.position,2);
+        viseur.localPosition = Vector2.ClampMagnitude(viseur.position,2);
 
         //Todelete
-        if (Input.GetButtonDown("R1Player1"))
+        if (Input.GetButton("R1Player1"))
         {
             RangeAttack();
             
         }
 
         float xLeft = Input.GetAxis("LeftAxisXPlayer" + PlayerIdNumber);
-        float yLeftt = Input.GetAxis("LeftAxisYPlayer" + PlayerIdNumber) * -1;
-        Vector2 velocity = new Vector2(xRight * Mathf.PI, yRight * Mathf.PI);
+        float yLeft = Input.GetAxis("LeftAxisYPlayer" + PlayerIdNumber) * -1;
+        Vector2 velocity = new Vector2(xLeft, yLeft);
 
-        //this.GetComponent<RigidBody2D>().Velocity = velocity;
+        this.GetComponent<Rigidbody2D>().velocity= velocity;
 
     }
 
