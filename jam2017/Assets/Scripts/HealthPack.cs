@@ -21,7 +21,6 @@ public class HealthPack : MonoBehaviour {
         if(other.tag == "Player")
         {
             other.GetComponent<PlayableChar>().SetHp(hp);
-            Debug.Log("Miam");
             gameObject.SetActive(false);
         }
     }
