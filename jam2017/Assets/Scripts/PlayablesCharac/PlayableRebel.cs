@@ -15,7 +15,7 @@ public class PlayableRebel : PlayableChar {
         rangWeapon = new LaserGun();
         viseur = transform.GetChild(0);
         nextShot = 0;
-        PlayerIdNumber = ID;
+        PlayerIdNumber = 1; // ID;
     }
 
     protected override void UseSpecial()
@@ -62,7 +62,7 @@ public class PlayableRebel : PlayableChar {
         int direction = -1;
         if (GetComponent<SpriteRenderer>().flipX)
             direction = 1;
-        GameObject hitBox = (GameObject)Instantiate(Resources.Load("Prefabs/LightsaberSlash"), new Vector2(transform.position.x + direction * 0.3f, transform.position.y - 0.25f), Quaternion.identity);
+        GameObject hitBox = (GameObject)Instantiate(Resources.Load("Prefabs/SlashLightsaber"), new Vector2(transform.position.x + direction * 0.3f, transform.position.y - 0.25f), Quaternion.identity);
         hitBox.GetComponent<Bullet>().damage = meleeDamage;
         hitBox.GetComponent<Bullet>().timeToLive = 1f;
     }
