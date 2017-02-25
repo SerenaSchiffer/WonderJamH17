@@ -115,7 +115,7 @@ public class Pewdiepie_UI : MonoBehaviour {
                 break;
 
             case SelectedAttack.Juggernaut:
-                Debug.Log("Spawn juggernaut");
+                
                 break;
 
             case SelectedAttack.Sniper:
