@@ -23,10 +23,12 @@ public class PlayableChar : MonoBehaviour
     public virtual void Start(){ }
     protected virtual void SpecialAttack(){ }
     protected virtual void RangeAttack() { }
+    protected virtual void MeleeAttack() { }
+    protected virtual void Dash() { }
     public void Update()
     {
         float xRight = Input.GetAxis("RightAxisXPlayer"+PlayerIdNumber);
-        float yRight = Input.GetAxis("RightAxisYPlayer" + PlayerIdNumber) *-1;
+        float yRight = Input.GetAxis("RightAxisYPlayer"+PlayerIdNumber) *-1;
         Transform viseur = transform.GetChild(0);
         viseur.position = new Vector2(xRight*Mathf.PI, yRight* Mathf.PI);
         viseur.localPosition = Vector2.ClampMagnitude(viseur.position,2);
@@ -35,7 +37,6 @@ public class PlayableChar : MonoBehaviour
         if (Input.GetButton("R1Player"+PlayerIdNumber))
         {
             RangeAttack();
-            
         }
 
         float xLeft = Input.GetAxis("LeftAxisXPlayer" + PlayerIdNumber);
