@@ -10,6 +10,7 @@ public class PlayableSuit : PlayableChar {
         melWeapon = new SuitCase();
         rangWeapon = new Pistol();
         viseur = transform.GetChild(0);
+        nextShot = 0;
     }
 
     protected override void UseSpecial()
@@ -19,11 +20,23 @@ public class PlayableSuit : PlayableChar {
 
     protected override void RangeAttack()
     {
-        Vector2 direction = viseur.position - transform.position;
-        direction.Normalize();
-        Debug.Log(direction.x + " " + direction.y);
-        GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Bullet"));
-        bullet.transform.position = transform.position;
-        bullet.GetComponent<Rigidbody2D>().velocity = direction * 10;
+        if (nextShot == 0)
+        {
+            nextShot = 0.75f;
+            Vector2 direction = viseur.position - transform.position;
+            direction.Normalize();
+            Debug.Log(direction.x + " " + direction.y);
+            GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Bullet"));
+            bullet.transform.position = transform.position;
+            bullet.GetComponent<Rigidbody2D>().velocity = direction * 10;
+        }
+        if (nextShot > 0)
+        {
+            nextShot -= Time.deltaTime;
+        }
+        if (nextShot < 0)
+        {
+            nextShot = 0;
+        }
     }
 }
