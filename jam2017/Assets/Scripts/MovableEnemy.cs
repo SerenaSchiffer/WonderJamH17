@@ -13,8 +13,13 @@ public class MovableEnemy : MonoBehaviour {
     public TypeMoveableEnemy type;
 
     private GameObject destination;
+    private GameObject playerToShoot;
     private Vector2 direction;
+
+    private float nextShot = 0;
     private bool isNear = false;
+    private bool isShooting = false;
+    private float spreadShootRobot = 20;
 	// Use this for initialization
 	void Start () {
 		
@@ -23,13 +28,21 @@ public class MovableEnemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         ReachDestination();
+
+        if (isShooting && nextShot == 0)
+            shootPlayer(playerToShoot);
+        else if (nextShot > 0)
+            nextShot -= Time.deltaTime;
+        else if (nextShot < 0)
+            nextShot = 0;
 	}
 
     private void ReachDestination()
     {
         if (type == TypeMoveableEnemy.Soldier)
         {
-            destination = GameObject.FindGameObjectWithTag("estinationSoldier");
+            destination = GameObject.FindGameObjectWithTag("DestinationSoldier");
+            direction = GetDistance(destination);
 
             if (direction.magnitude < 0.1f)
             {
@@ -65,44 +78,61 @@ public class MovableEnemy : MonoBehaviour {
             }
 
             if (!isNear)
+            {
+                direction = GetDistance(destination);
                 AddVelocity(80);
-            else
-                Debug.Log("debug IsNear");
+            }
         }
     }
 
     private void AddVelocity(float speed)
     {
-        direction = destination.transform.position - gameObject.transform.position;
         GetComponent<Rigidbody2D>().velocity = direction.normalized * speed * Time.deltaTime;
     }
 
     private void shootPlayer(GameObject other)
     {
-        Vector2 projectileForce;
+        Vector2 direction;
         Transform projectilePosition = gameObject.transform;
         GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Bullet"));
 
+        if (type == TypeMoveableEnemy.Soldier)
+            nextShot = 0.75f;
+        else
+            nextShot = 0.35f;
 
         bullet.transform.position = transform.position;
-        projectileForce = GetDistance(other);
-        bullet.GetComponent<Rigidbody2D>().velocity = projectileForce * 5;
+        direction = GetDistance(other);
+
+        if (type == TypeMoveableEnemy.Robot)
+        {
+            float random = Random.Range(-spreadShootRobot, spreadShootRobot);
+            direction = Quaternion.AngleAxis(random, Vector3.forward) * direction;
+        }
+
+        bullet.GetComponent<Rigidbody2D>().velocity = direction * 5;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            shootPlayer(other.gameObject);
             AddVelocity(0);
             isNear = true;
+            isShooting = true;
+            playerToShoot = other.gameObject;
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Player")
+        {
             isNear = false;
+            isShooting = false;
+            playerToShoot = null;
+        }
+            
     }
 
     Vector2 GetDistance(GameObject other)

@@ -3,19 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+enum SelectedAttack
+{
+    Soldier = 0,
+    Robot = 1,
+    Juggernaut = 2,
+    Sniper = 3,
+    Missile = 4
+}
+
 public class Pewdiepie_UI : MonoBehaviour {
 
     public GameObject[] unit_icons;
     public Text myMoney;
-
-    private int selected;
+    
     private int money;
     private bool raiseMoney;
-
+    private SelectedAttack selectedAttack;
 
 	// Use this for initialization
 	void Start () {
-        selected = 0;
+        selectedAttack = SelectedAttack.Soldier;
         money = 100;
         raiseMoney = true;
         StartCoroutine(AddMoney());
@@ -39,33 +47,77 @@ public class Pewdiepie_UI : MonoBehaviour {
         // Je m'excuse
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            selected = 0;
+            selectedAttack = SelectedAttack.Soldier;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            selected = 1;
+            selectedAttack = SelectedAttack.Robot;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            selected = 2;
+            selectedAttack = SelectedAttack.Juggernaut;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            selected = 3;
+            selectedAttack = SelectedAttack.Sniper;
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            selected = 4;
+            selectedAttack = SelectedAttack.Soldier;
         }
         foreach (GameObject g in unit_icons)
             g.GetComponent<Image>().color = Color.white;
-        unit_icons[selected].GetComponent<Image>().color = Color.yellow;
+        unit_icons[(int)selectedAttack].GetComponent<Image>().color = Color.yellow;
         
         myMoney.text = money + " $";
 
-        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            // try to spawn using KeyCode.Direction, int selected
+            Vector2 position = GameObject.Find("LeftSpawnPosition").transform.position;
+            SpawnEnemy(position);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Vector2 position = GameObject.Find("RightSpawnPosition").transform.position;
+            SpawnEnemy(position);
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Vector2 position = GameObject.Find("BottomSpawnPosition").transform.position;
+            SpawnEnemy(position);
+        }
+    }
+
+    private void SpawnEnemy(Vector2 spawnPosition)
+    {
+        switch (selectedAttack)
+        {
+            case SelectedAttack.Soldier:
+                GameObject soldiers = (GameObject)Instantiate(Resources.Load("Prefabs/Soldier"));
+                soldiers.transform.position = spawnPosition;
+                soldiers.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
+                break;
+
+            case SelectedAttack.Robot:
+                GameObject robots = (GameObject)Instantiate(Resources.Load("Prefabs/Robot"));
+                robots.transform.position = spawnPosition;
+                robots.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Robot;
+                break;
+
+            case SelectedAttack.Juggernaut:
+                Debug.Log("Spawn juggernaut");
+                break;
+
+            case SelectedAttack.Sniper:
+                Debug.Log("Spawn sniper");
+                break;
+
+            case SelectedAttack.Missile:
+                Debug.Log("Spawn missile");
+                break;
         }
     }
 }
