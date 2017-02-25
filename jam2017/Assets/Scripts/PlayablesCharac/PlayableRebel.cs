@@ -52,14 +52,12 @@ public class PlayableRebel : PlayableChar {
         }
     }
 
-<<<<<<< HEAD
     public static void UpdateID(int id)
     {
         ID = id;
-=======
+    }
     protected override void MeleeAttack()
     {
         meleeAttack = 60;
->>>>>>> bda2206ae50ff2c3449fce7d5e4433ad019a70ef
     }
 }

@@ -18,16 +18,11 @@ public class PlayableChar : MonoBehaviour
     public int damage;
     Transform viseur;
     public bool falling;
-
-<<<<<<< HEAD
     protected int PlayerIdNumber;
     
-=======
-    public int PlayerIdNumber;
 
     protected int meleeAttack;
 
->>>>>>> bda2206ae50ff2c3449fce7d5e4433ad019a70ef
     //enum Controls {Attack = "R2" ,Melee = "R1" ,SpecialAttack = "L1" };
 
     // Useful Functions
