@@ -8,12 +8,14 @@ public class Missile : MonoBehaviour {
     public float timeToStrike;
     public float damage;
     public bool missileIsTriggered;
+    private float valuePerFrame = 0;
     GameObject MissileSight;
+    Transform nukeTransform;
     enum location { left=1,center=2,right=3}
 
 	// Use this for initialization
 	void Start () {
-		
+        
 	}
 	
 	// Update is called once per frame
@@ -21,6 +23,7 @@ public class Missile : MonoBehaviour {
         if(missileIsTriggered)
         {
             MissileTriggered(1);
+            valuePerFrame = (float)(((float)MissileSight.transform.GetChild(0).transform.position.y - 0.871) / ((float)timeToStrike / (float)Time.deltaTime));
             missileIsTriggered = false;
         }
 
@@ -34,7 +37,13 @@ public class Missile : MonoBehaviour {
 
             if (actualTime <= timeToStrike)
             {
+                Debug.Log(nukeTransform.position.y);
                 actualTime += Time.deltaTime;
+                nukeTransform.position = new Vector3(nukeTransform.position.x, nukeTransform.position.y-valuePerFrame, nukeTransform.position.z);
+                if(MissileSight.transform.GetChild(0).transform.position.y<=0.571)
+                {
+                    actualTime = timeToStrike + 1;
+                }
             }
             else
             {
@@ -60,11 +69,14 @@ public class Missile : MonoBehaviour {
         Destroy(missileLocation);
 
         MissileSight = (GameObject)Instantiate(Resources.Load("Prefabs/MissileIncoming"));
+        nukeTransform = MissileSight.transform.GetChild(0).transform;
         MissileSight.transform.position = new Vector2(randomX, randomY);
     }
 
     public void MissileExplode()
     {
+        GameObject explosion = (GameObject)Instantiate(Resources.Load("Prefabs/Explosion"));
+        explosion.transform.position = MissileSight.transform.position;
         GameObject hole = (GameObject)Instantiate(Resources.Load("Prefabs/Hole"));
         hole.transform.position = MissileSight.transform.position;
         Destroy(MissileSight);

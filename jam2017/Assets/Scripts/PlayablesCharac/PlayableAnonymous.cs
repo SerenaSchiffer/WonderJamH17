@@ -14,6 +14,7 @@ public class PlayableAnonymous : PlayableChar {
         viseur = transform.GetChild(0);
         nextShot = 0;
         PlayerIdNumber = ID;
+        base.Start();
     }
 
     protected override void UseSpecial()
