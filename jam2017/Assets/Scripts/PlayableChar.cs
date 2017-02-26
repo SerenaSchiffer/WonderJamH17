@@ -37,6 +37,13 @@ public class PlayableChar : MonoBehaviour
     // Useful Functions
     public virtual void Start()
     {
+        if (PlayerIdNumber == 0)
+        {
+            Destroy(this.gameObject);
+        }
+        score = GameObject.Find("Score" + PlayerIdNumber).GetComponent<Text>();
+        hpSlider = GameObject.Find("Player" + PlayerIdNumber).GetComponent<Slider>();
+        SPSlider = GameObject.Find("SpecialBar" + PlayerIdNumber).GetComponent<Slider>();
         point = 0;
         SP = 0;
         score.text = "Score  :  " + point;
@@ -48,11 +55,6 @@ public class PlayableChar : MonoBehaviour
 
         myAnimator = GetComponent<Animator>();
         meleeAttack = 0;
-        PlayerIdNumber = 1; //TODELETE
-        if(PlayerIdNumber == 0)
-        {
-            Destroy(this.gameObject);
-        }
     }
     protected virtual void SpecialAttack(){ }
     protected virtual void RangeAttack() { }
