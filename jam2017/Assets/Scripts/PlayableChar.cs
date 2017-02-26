@@ -59,6 +59,11 @@ public class PlayableChar : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         meleeAttack = 0;
     }
+
+    public void Start()
+    {
+        transform.GetChild(0).GetComponentInChildren<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];
+    }
     protected virtual void SpecialAttack(){ }
     protected virtual void RangeAttack() { }
     protected virtual void MeleeAttack() { }
