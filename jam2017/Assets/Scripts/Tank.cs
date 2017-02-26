@@ -26,7 +26,8 @@ public class Tank : MonoBehaviour {
         if(other.tag == "Player")
         {
             //fonction de kill
-            Destroy(other.transform.parent.gameObject);
+            other.gameObject.GetComponentInParent<PlayableChar>().SetHp(-999);
+            //Destroy(other.transform.parent.gameObject);
         }
     }
 }

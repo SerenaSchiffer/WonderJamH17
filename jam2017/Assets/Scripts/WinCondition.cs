@@ -13,7 +13,11 @@ public class WinCondition : MonoBehaviour {
 	void Update () {
         players = GameObject.FindGameObjectsWithTag("Player");
         //Debug.Log(players.Length);
-        if(players.Length == 1)
+
+        if (players.Length == 0)
+            Application.LoadLevel("End_Dictator");
+
+        if (players.Length == 1)
         {
             EndScript.SetWinPlayer(players[0].GetComponentInParent<PlayableChar>().PlayerIdNumber);
             switch (players[0].transform.parent.name)
