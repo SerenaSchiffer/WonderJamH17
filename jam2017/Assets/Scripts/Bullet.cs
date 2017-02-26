@@ -27,6 +27,8 @@ public class Bullet : MonoBehaviour {
             if(points > 0)
             {
                 Creator.UpdatePoint(points);
+                Destroy(other.transform.parent.gameObject);
+                Debug.Log("Rito plz");
             }
         }
         if(other.tag == "Player" && tag != "Player" )

@@ -163,6 +163,7 @@ public class PlayableChar : MonoBehaviour
     {
         this.point += pts;
         SPSlider.value = Mathf.MoveTowards(hpSlider.value, hpSlider.value+pts, 2f);
+        score.text = "Score  :  " + point;
     }
 
 }

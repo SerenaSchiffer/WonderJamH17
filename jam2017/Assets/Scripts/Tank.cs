@@ -26,7 +26,7 @@ public class Tank : MonoBehaviour {
         if(other.tag == "Player")
         {
             //fonction de kill
-            Destroy(other.gameObject);
+            Destroy(other.transform.parent.gameObject);
         }
     }
 }

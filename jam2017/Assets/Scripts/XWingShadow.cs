@@ -17,13 +17,4 @@ public class XWingShadow : MonoBehaviour {
     {
         tankBody.velocity = transform.parent.right * speed;
     }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            //fonction de kill
-            Destroy(other.gameObject);
-        }
-    }
 }
