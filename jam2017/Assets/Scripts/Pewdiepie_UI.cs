@@ -38,7 +38,7 @@ public class Pewdiepie_UI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         selectedAttack = SelectedAttack.Soldier;
-        money = 100;
+        money = 1250;
         raiseMoney = true;
         StartCoroutine(AddMoney());
     }
