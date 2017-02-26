@@ -25,7 +25,7 @@ public class PlayableSuit : PlayableChar {
     {
         if (nextShot == 0)
         {
-            nextShot = 0.75f;
+            nextShot = 0.70f;
             Vector2 direction = viseur.position - transform.position;
             direction.Normalize();
             //Debug.Log(direction.x + " " + direction.y);
