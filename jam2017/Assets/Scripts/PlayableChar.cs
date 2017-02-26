@@ -69,7 +69,6 @@ public class PlayableChar : MonoBehaviour
     {
         transform.GetChild(0).GetComponentInChildren<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];
         GetComponentInChildren<ParticleSystem>().startColor = ColorSystem.mainColors[PlayerIdNumber];
-        GetComponentInChildren<ParticleSystem>().Play();
     }
     protected virtual void SpecialAttack(){ }
     protected virtual void RangeAttack() { }
@@ -98,6 +97,8 @@ public class PlayableChar : MonoBehaviour
     {
         hpSlider.value = Mathf.MoveTowards(hpSlider.value, healthPoints, 2f);
         SPSlider.value = Mathf.MoveTowards(SPSlider.value, SP, 2f);
+        if(SP == 100)
+            GetComponentInChildren<ParticleSystem>().Play();
         if (PlayerIdNumber == 0)
         {
             PlayerIdNumber = 1;
@@ -193,6 +194,7 @@ public class PlayableChar : MonoBehaviour
     protected virtual void UseSpecial()
     {
         // Effects of the special attack
+        GetComponentInChildren<ParticleSystem>().Stop();
     }
 
     public void SetHp(int value)

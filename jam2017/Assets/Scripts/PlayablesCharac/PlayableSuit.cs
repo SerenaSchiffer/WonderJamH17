@@ -20,6 +20,7 @@ public class PlayableSuit : PlayableChar {
 
     protected override void UseSpecial()
     {
+        base.UseSpecial();
         // Effects of the special attack
         if (!denied)
         {

@@ -23,6 +23,7 @@ public class PlayableFarmer : PlayableChar {
 
     protected override void UseSpecial()
     {
+        base.UseSpecial();
         // Effects of the special attack
         Vector2 direction = viseur.position - transform.position;
         if (!chicken)

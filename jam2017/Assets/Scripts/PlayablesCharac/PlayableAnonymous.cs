@@ -19,6 +19,7 @@ public class PlayableAnonymous : PlayableChar {
 
     protected override void UseSpecial()
     {
+        base.UseSpecial();
         // Effects of the special attack
         GameObject.Find("EventSystem").GetComponent<Hack>().TurnOnHacking();
     }
