@@ -93,6 +93,7 @@ public class Pewdiepie_UI : MonoBehaviour {
             }
             if(Input.GetKeyDown(KeyCode.Space) && nukeActivated)
             {
+                GetComponent<AudioSource>().Play();
                 StartCoroutine(Nuke());
             }
         #endregion
