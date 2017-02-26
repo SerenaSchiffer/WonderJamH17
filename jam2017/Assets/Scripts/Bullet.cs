@@ -30,8 +30,9 @@ public class Bullet : MonoBehaviour {
                 Destroy(other.transform.parent.gameObject);
             }
         }
-        if(other.tag == "Player" && tag!= "Player" && tag!="EnemyBullet")
+        if(other.tag == "Player" && tag!= "Player" && tag!="Respawn")
         {
+            Debug.Log(damage + "dans lcul");
             other.GetComponentInParent<PlayableChar>().SetHp(-damage);
             Destroy(this.gameObject);
         }

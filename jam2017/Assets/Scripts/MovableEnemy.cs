@@ -227,6 +227,7 @@ public class MovableEnemy : MonoBehaviour {
         {
             IsAiming = true;
             bulletLine = new GameObject();
+            bulletLine.transform.parent = transform;
 
             bulletLine.transform.position = gameObject.transform.position;
             bulletLine.AddComponent<LineRenderer>();

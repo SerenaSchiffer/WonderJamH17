@@ -156,17 +156,19 @@ public class PlayableChar : MonoBehaviour
         // Effects of the special attack
     }
 
-    public void SetHp(int hp)
+    public void SetHp(int value)
     {
-        if (healthPoints + hp > maxHealth)
+        if (healthPoints + value > maxHealth)
         {
             healthPoints = maxHealth;
             hpSlider.value = hpSlider.maxValue;
         } else
         {
-            Debug.Log(hp);
-            healthPoints += hp;
-            
+            Debug.Log("J'ai " + healthPoints);
+            healthPoints += value;
+            Debug.Log("la j'ai" + healthPoints);
+            if (healthPoints <= 0)
+                Destroy(gameObject);
         }
     }
 
