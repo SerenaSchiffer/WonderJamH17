@@ -32,7 +32,7 @@ public class MovableEnemy : MonoBehaviour {
     private bool isShooting = false;
     private float decNextShot = 0;
     private int cpt = 0;
-
+    
     // Use this for initialization
     void Start() {
 
@@ -56,6 +56,10 @@ public class MovableEnemy : MonoBehaviour {
         }
         else if (decNextShot < 0)
             decNextShot = 0;
+
+        if (decNextShot == nextShot)
+            GetComponent<Animator>().SetBool("isShooting", false);
+        else GetComponent<Animator>().SetBool("isShooting", true);
     }
 
     private void ReachDestination()
