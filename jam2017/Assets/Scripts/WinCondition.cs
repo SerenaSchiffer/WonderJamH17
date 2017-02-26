@@ -12,7 +12,7 @@ public class WinCondition : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log(players.Length);
+        //Debug.Log(players.Length);
         if(players.Length == 1)
         {
             EndScript.SetWinPlayer(players[0].GetComponentInParent<PlayableChar>().PlayerIdNumber);

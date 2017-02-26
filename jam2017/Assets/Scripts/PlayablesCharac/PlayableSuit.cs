@@ -7,14 +7,14 @@ public class PlayableSuit : PlayableChar {
     public static int ID;
     GameObject denied;
     // Use this for initialization
-    public override void Start()
+    public override void Awake()
     {
         melWeapon = new SuitCase();
         rangWeapon = new Pistol();
         viseur = transform.GetChild(0);
         nextShot = 0;
         PlayerIdNumber = ID;
-        base.Start();
+        base.Awake();
     }
 
     protected override void UseSpecial()

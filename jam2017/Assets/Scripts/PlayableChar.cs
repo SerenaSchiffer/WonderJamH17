@@ -35,11 +35,12 @@ public class PlayableChar : MonoBehaviour
     //enum Controls {Attack = "R2" ,Melee = "R1" ,SpecialAttack = "L1" };
 
     // Useful Functions
-    public virtual void Start()
+    public virtual void Awake()
     {
         if (PlayerIdNumber == 0)
         {
             Destroy(this.gameObject);
+            return;
         }
         score = GameObject.Find("Score" + PlayerIdNumber).GetComponent<Text>();
         hpSlider = GameObject.Find("Player" + PlayerIdNumber).GetComponent<Slider>();

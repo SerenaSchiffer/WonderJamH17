@@ -15,6 +15,7 @@ public class Dash : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         playerID = gameObject.GetComponent<PlayableChar>().PlayerIdNumber;
+        Debug.Log(playerID);
         actualTime = 0;
     }
 	
@@ -40,6 +41,8 @@ public class Dash : MonoBehaviour {
 
 	    if(Input.GetButtonDown("DashPlayer"+ playerID) && !dashSprite)
         {
+
+            Debug.Log(playerID);
             Vector2 pos1 = transform.position;
             Vector2 joystickOrientation = new Vector2(Input.GetAxis("LeftAxisXPlayer" + playerID), Input.GetAxis("LeftAxisYPlayer" + playerID)*-1);
 
@@ -53,6 +56,7 @@ public class Dash : MonoBehaviour {
             
             joystickOrientation = joystickOrientation.normalized;
             transform.position += new Vector3(joystickOrientation.x * dashRate*Time.deltaTime, joystickOrientation.y * dashRate * Time.deltaTime, 0.0f);
+            Debug.Log(transform.gameObject.name);
             Vector2 pos2 = transform.position;
             Vector2 posCentre = (pos1 + pos2) / 2;
             dashSprite = (GameObject)Instantiate(Resources.Load("Prefabs/dash"));

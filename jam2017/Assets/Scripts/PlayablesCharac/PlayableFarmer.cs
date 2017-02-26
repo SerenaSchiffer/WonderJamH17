@@ -11,14 +11,14 @@ public class PlayableFarmer : PlayableChar {
 
     private GameObject chicken;
     // Use this for initialization
-    public override void Start()
+    public override void Awake()
     {
         melWeapon = new PitchFork();
         rangWeapon = new Shotgun();
         nextShot = 0;
         viseur = transform.GetChild(0);
         PlayerIdNumber = ID;
-        base.Start();
+        base.Awake();
     }
 
     protected override void UseSpecial()
