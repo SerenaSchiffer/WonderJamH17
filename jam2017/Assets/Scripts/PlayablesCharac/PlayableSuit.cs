@@ -28,7 +28,7 @@ public class PlayableSuit : PlayableChar {
             nextShot = 0.75f;
             Vector2 direction = viseur.position - transform.position;
             direction.Normalize();
-            Debug.Log(direction.x + " " + direction.y);
+            //Debug.Log(direction.x + " " + direction.y);
             GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Bullet"));
 
 

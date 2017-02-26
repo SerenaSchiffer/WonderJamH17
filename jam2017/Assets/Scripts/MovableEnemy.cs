@@ -32,7 +32,7 @@ public class MovableEnemy : MonoBehaviour {
     private bool isShooting = false;
     private float decNextShot = 0;
     private int cpt = 0;
-
+    
     // Use this for initialization
     void Start() {
 
@@ -56,6 +56,10 @@ public class MovableEnemy : MonoBehaviour {
         }
         else if (decNextShot < 0)
             decNextShot = 0;
+
+        if (decNextShot == nextShot)
+            GetComponent<Animator>().SetBool("isShooting", false);
+        else GetComponent<Animator>().SetBool("isShooting", true);
     }
 
     private void ReachDestination()
@@ -234,7 +238,6 @@ public class MovableEnemy : MonoBehaviour {
             lr.SetPosition(0, gameObject.transform.position + new Vector3(0, 0, -0.1f));
             lr.SetPosition(1, other.transform.position + new Vector3(0, 0, -0.1f));
         }
-
     }
 
     void OnTriggerEnter2D(Collider2D other)

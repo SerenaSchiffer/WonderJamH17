@@ -28,17 +28,17 @@ public class PlayableFarmer : PlayableChar {
     {
         if (nextShot == 0)
         {
+
             nextShot = 1.5f;
             Vector2 direction = viseur.position - transform.position;
             direction.Normalize();
-            Debug.Log(direction.x + " " + direction.y);
+            Debug.Log("nextShot = 0");
             for (int i = 0; i < NbrBullet; i++)
             {
                 float random = Random.Range(-spread, spread);
                 direction = Quaternion.AngleAxis(random, Vector3.forward) * direction;
                 GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/ShotgunBullet"));
-
-
+                
                 Vector2 bulletSpawn = transform.position;
                 if (viseur.transform.position.x - gameObject.transform.position.x > 0)
                 {
@@ -60,10 +60,12 @@ public class PlayableFarmer : PlayableChar {
         }
         if (nextShot > 0)
         {
+            Debug.Log("nextShot > 0");
             nextShot -= Time.deltaTime;
         }
         if (nextShot < 0)
         {
+            Debug.Log("nextShot < 0");
             nextShot = 0;
         }
     }
