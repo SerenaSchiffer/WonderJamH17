@@ -7,7 +7,7 @@ public class PlayableChar : MonoBehaviour
 {
     // Character Attributes
     public int healthPoints;
-    private int SP;
+    public int SP;
     public float movSpeed;
     public float dashLength;
     public Text score;
@@ -129,9 +129,10 @@ public class PlayableChar : MonoBehaviour
         }
         else myAnimator.SetBool("isShooting", false);
 
-        if(Input.GetAxis("L2Player"+PlayerIdNumber)>0.8)
+        if(Input.GetAxis("L2Player"+PlayerIdNumber)>0.8 && SP == 100)
         {
             UseSpecial();
+            SP = 0;
         }
 
 
