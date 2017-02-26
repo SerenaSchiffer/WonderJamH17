@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class XWingAttack : MonoBehaviour {
 
-    private int pointsGot = 0;
+    public int pointsGot = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -16,15 +16,4 @@ public class XWingAttack : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    public void AddPoints(int nbPoints)
-    {
-        pointsGot += nbPoints;
-        Debug.Log(pointsGot);
-    }
-
-    public int GetPointsGot()
-    {
-        return pointsGot;
-    }
 }

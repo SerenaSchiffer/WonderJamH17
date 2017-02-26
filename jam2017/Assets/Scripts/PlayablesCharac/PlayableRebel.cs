@@ -26,9 +26,6 @@ public class PlayableRebel : PlayableChar {
         if (!Xwing)
         {
             Xwing = (GameObject)Instantiate(Resources.Load("Prefabs/XWingContainer"));
-            int points = Xwing.GetComponent<XWingAttack>().GetPointsGot();
-
-            UpdatePoint(points);
         }
     }
 

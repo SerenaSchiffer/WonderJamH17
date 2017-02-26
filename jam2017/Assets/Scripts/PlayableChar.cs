@@ -194,6 +194,7 @@ public class PlayableChar : MonoBehaviour
 
     public void UpdatePoint(int pts)
     {
+        Debug.Log(pts);
         this.point += pts;
         SP += pts;
         if(SP > 100)

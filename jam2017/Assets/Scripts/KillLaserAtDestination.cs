@@ -35,7 +35,8 @@ public class KillLaserAtDestination : MonoBehaviour {
 
             if (points > 0)
             {
-                transform.parent.parent.GetComponent<XWingAttack>().AddPoints(points);
+                GameObject rebel = GameObject.Find("Rebel");
+                rebel.GetComponent<PlayableRebel>().UpdatePoint(points);
                 Destroy(other.transform.parent.gameObject);
             }
         }
