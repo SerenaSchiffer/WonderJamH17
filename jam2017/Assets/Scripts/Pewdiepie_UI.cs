@@ -200,6 +200,7 @@ public class Pewdiepie_UI : MonoBehaviour {
     public void ActivateNuke()
     {
         nukeActivated = true;
+        Debug.Log("rafa");
         money = 0;
     }
 
