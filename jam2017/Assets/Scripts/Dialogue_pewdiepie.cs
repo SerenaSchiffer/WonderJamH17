@@ -9,6 +9,7 @@ public class Dialogue_pewdiepie : MonoBehaviour {
     public Text text;
     public Text money;
     public Text nuke;
+    public GameObject pewdiepieUI;
 
     private string[] waveTexts = { "There  is  no  tolerance  for  rebels.        \nLay  down  your  weapons  and  your  family\nWill  be  spared.", "Dialogue2", "Dialogue3", "Dialogue4", "Dialogue5" };
 
@@ -67,6 +68,8 @@ public class Dialogue_pewdiepie : MonoBehaviour {
 
     void KillPlayers()
     {
-
+        nuke.gameObject.SetActive(true);
+        pewdiepieUI.GetComponent<Pewdiepie_UI>().ActivateNuke();
+        money.text = "Infinite $";
     }
 }
