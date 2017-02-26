@@ -16,12 +16,14 @@ public class EnemyScript : MonoBehaviour {
 		
 	}
 
-    public void Damage(int damage)
+    public int Damage(int damage)
     {
         hp -= damage;
-        if(hp <= 0)
+        if (hp <= 0)
         {
             Destroy(this.gameObject);
+            return points;
         }
+        else return 0;
     }
 }

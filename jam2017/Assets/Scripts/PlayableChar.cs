@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class PlayableChar : MonoBehaviour
 {
@@ -9,6 +9,10 @@ public class PlayableChar : MonoBehaviour
     public int healthPoints;
     public float movSpeed;
     public float dashLength;
+    public Text score;
+    public Slider SPSlider;
+    public Slider hpSlider;
+    private int point;
 
     protected Melee melWeapon;
     protected Guns rangWeapon;
@@ -32,7 +36,14 @@ public class PlayableChar : MonoBehaviour
     // Useful Functions
     public virtual void Start()
     {
+        point = 0;
+        score.text = "Score  :  " + point;
         maxHealth = healthPoints;
+        hpSlider.maxValue = maxHealth;
+        hpSlider.value = maxHealth;
+        SPSlider.maxValue = 100;
+        SPSlider.value = 0;
+
         myAnimator = GetComponent<Animator>();
         meleeAttack = 0;
         PlayerIdNumber = 1; //TODELETE
@@ -134,11 +145,18 @@ public class PlayableChar : MonoBehaviour
         if (healthPoints + hp > maxHealth)
         {
             healthPoints = maxHealth;
+            hpSlider.value = hpSlider.maxValue;
         } else
         {
-            Debug.Log("can you plz" + hp);
             healthPoints += hp;
+            hpSlider.value = Mathf.MoveTowards(hpSlider.value, healthPoints, 2f);
         }
+    }
+
+    public void UpdatePoint(int pts)
+    {
+        this.point += pts;
+        SPSlider.value = Mathf.MoveTowards(hpSlider.value, hpSlider.value+pts, 2f);
     }
 
 }

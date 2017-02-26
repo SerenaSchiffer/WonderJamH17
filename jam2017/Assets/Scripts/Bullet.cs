@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
     public int damage = 0;
     public float timeToLive;
+    public PlayableChar Creator;
 
     void Update()
     {
@@ -22,7 +23,11 @@ public class Bullet : MonoBehaviour {
         if(other.tag == "Enemy")
         {
             Destroy(this.gameObject);
-            other.GetComponentInParent<EnemyScript>().Damage(damage);
+            int points = other.GetComponentInParent<EnemyScript>().Damage(damage);
+            if(points > 0)
+            {
+                Creator.UpdatePoint(points);
+            }
         }
         if(other.tag == "Player" && tag != "Player" )
         {
