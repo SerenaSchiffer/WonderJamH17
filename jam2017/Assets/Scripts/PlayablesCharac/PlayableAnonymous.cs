@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayableAnonymous : PlayableChar {
 
     Transform viseur;
+    AudioSource[] audioSources;
     public static int ID;
     // Use this for initialization
     public override void Awake()
@@ -14,6 +15,7 @@ public class PlayableAnonymous : PlayableChar {
         viseur = transform.GetChild(0);
         nextShot = 0;
         PlayerIdNumber = ID;
+        audioSources = GetComponents<AudioSource>();
         base.Awake();
     }
 
@@ -22,6 +24,7 @@ public class PlayableAnonymous : PlayableChar {
         base.UseSpecial();
         // Effects of the special attack
         GameObject.Find("EventSystem").GetComponent<Hack>().TurnOnHacking();
+        audioSources[0].Play();
     }
 
     protected override void RangeAttack()
@@ -33,6 +36,7 @@ public class PlayableAnonymous : PlayableChar {
             direction.Normalize();
             //Debug.Log(direction.x + " " + direction.y);
             GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/UziBullet"));
+            audioSources[1].Play();
             bullet.transform.localScale /= 2;
 
             Vector2 bulletSpawn = transform.position;
@@ -76,6 +80,7 @@ public class PlayableAnonymous : PlayableChar {
         if (GetComponent<SpriteRenderer>().flipX)
             direction = 1;
         GameObject hitBox = (GameObject)Instantiate(Resources.Load("Prefabs/SlashKatana"), new Vector2(transform.position.x + direction * 0.3f, transform.position.y - 0.25f), Quaternion.identity);
+        audioSources[2].Play();
         hitBox.GetComponent<Bullet>().damage = meleeDamage;
         hitBox.GetComponent<Bullet>().timeToLive = 1f;
         hitBox.GetComponent<Bullet>().Creator = this;
