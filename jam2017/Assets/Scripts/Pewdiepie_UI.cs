@@ -170,11 +170,12 @@ public class Pewdiepie_UI : MonoBehaviour {
                 break;
 
             case SelectedAttack.Sniper:
-                if (money >= 750)
+                if (money >= 100)
                 {
                     spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Sniper"));
                     spawnedAttack.transform.position = spawnPosition;
                     spawnedAttack.GetComponent<MovableEnemy>().SetSelectedSpawnPosition(ssp);
+                    spawnedAttack.GetComponent<SpriteRenderer>().flipX = isFlipped;
                     money -= spawnedAttack.GetComponent<MovableEnemy>().spawnCost;
                 }
                 else
