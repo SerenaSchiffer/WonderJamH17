@@ -34,7 +34,7 @@ public class CharSelect : MonoBehaviour {
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Application.LoadLevel("GameScene");
+            Application.LoadLevel("emile");
         }
         //select1
         if (Input.GetAxisRaw("LeftAxisXPlayer1") != 0 && !p1Sel)
