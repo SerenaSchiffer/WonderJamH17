@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayableSuit : PlayableChar {
     Transform viseur;
     public static int ID;
+    GameObject denied;
     // Use this for initialization
     public override void Start()
     {
@@ -19,6 +20,11 @@ public class PlayableSuit : PlayableChar {
     protected override void UseSpecial()
     {
         // Effects of the special attack
+        if (!denied)
+        {
+            denied = (GameObject)Instantiate(Resources.Load("Prefabs/DeniedAttack"));
+            denied.transform.position = GameObject.Find("BusinessMan").transform.GetChild(0).transform.position;
+        }
     }
 
     protected override void RangeAttack()
