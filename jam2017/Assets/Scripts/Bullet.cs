@@ -28,10 +28,9 @@ public class Bullet : MonoBehaviour {
             {
                 Creator.UpdatePoint(points);
                 Destroy(other.transform.parent.gameObject);
-                Debug.Log("Rito plz");
             }
         }
-        if(other.tag == "Player" && tag != "Player" )
+        if(other.tag == "Player" && tag=="Enemy" )
         {
             other.GetComponentInParent<PlayableChar>().SetHp(-damage);
             Destroy(this.gameObject);
