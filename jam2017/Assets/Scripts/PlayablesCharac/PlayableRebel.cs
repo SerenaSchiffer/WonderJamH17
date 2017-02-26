@@ -25,7 +25,6 @@ public class PlayableRebel : PlayableChar {
         // Effects of the special attack
         if (!Xwing)
         {
-            Debug.Log("Censé instantiate un XWING");
             Xwing = (GameObject)Instantiate(Resources.Load("Prefabs/XWingContainer"));
         }
     }
