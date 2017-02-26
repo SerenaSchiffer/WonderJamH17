@@ -34,6 +34,20 @@ public class PlayableFarmer : PlayableChar {
         }
     }
 
+    public void FixedUpdate()
+    {
+        if (nextShot > 0)
+        {
+            Debug.Log("nextShot > 0");
+            nextShot -= Time.deltaTime;
+        }
+        if (nextShot < 0)
+        {
+            Debug.Log("nextShot < 0");
+            nextShot = 0;
+        }
+    }
+
     protected override void RangeAttack()
     {
         if (nextShot == 0)
@@ -68,16 +82,6 @@ public class PlayableFarmer : PlayableChar {
                 bullet.GetComponent<Bullet>().Creator = this;
                 bullet.GetComponent<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];
             }
-        }
-        if (nextShot > 0)
-        {
-            Debug.Log("nextShot > 0");
-            nextShot -= Time.deltaTime;
-        }
-        if (nextShot < 0)
-        {
-            Debug.Log("nextShot < 0");
-            nextShot = 0;
         }
     }
 
