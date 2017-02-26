@@ -37,7 +37,7 @@ public class KillLaserAtDestination : MonoBehaviour {
             {
                 GameObject rebel = GameObject.Find("Rebel");
                 rebel.GetComponent<PlayableRebel>().UpdatePoint(points);
-                Destroy(other.transform.parent.gameObject);
+                Destroy(other.transform.parent.gameObject, 1.5f);
             }
         }
     }
