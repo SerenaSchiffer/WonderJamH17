@@ -8,6 +8,8 @@ public class PlayableFarmer : PlayableChar {
     public int NbrBullet;
     public float spread;
     public static int ID;
+
+    private GameObject chicken;
     // Use this for initialization
     public override void Start()
     {
@@ -22,6 +24,14 @@ public class PlayableFarmer : PlayableChar {
     protected override void UseSpecial()
     {
         // Effects of the special attack
+        Vector2 direction = viseur.position - transform.position;
+        if (!chicken)
+        {
+            chicken = (GameObject)Instantiate(Resources.Load("Prefabs/Chicken"));
+            chicken.transform.position = transform.position;
+            chicken.GetComponent<Chickenscript>().damage = 100;
+            chicken.GetComponent<Chickenscript>().direction = direction.normalized;
+        }
     }
 
     protected override void RangeAttack()

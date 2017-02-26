@@ -9,9 +9,15 @@ public class CharSelect : MonoBehaviour {
     int[] playerSelected;
 
     string[] charTexts = { "The  Businessman", "The  Rebel", "Anonymous", "The  Farmer" };
+    string[] rangedWeap = { "Pistol", "Laser", "UZI", "Shotgun" };
+    string[] meleeWeap = { "Suitcase", "Lightsaber", "Katana", "Pitchfork" };
+    string[] specials = { "DENIED !", "X-Wing Strike", "DDOS", "Crazy Chick" };
 
     public Image[] images;
     public Text[] texts;
+    public Text[] ranges;
+    public Text[] melee;
+    public Text[] special;
     bool axis1, axis2, axis3, axis4;
     bool selected1, selected2, selected3, selected4;
     bool p1Sel, p2Sel, p3Sel, p4Sel;
@@ -328,6 +334,9 @@ public class CharSelect : MonoBehaviour {
         for (int i = 0; i < 4; i++)
         {
             texts[i].text = charTexts[playerSelected[i]];
+            ranges[i].text = rangedWeap[playerSelected[i]];
+            melee[i].text = meleeWeap[playerSelected[i]];
+            special[i].text = specials[playerSelected[i]];
             images[i].sprite = Resources.Load<Sprite>("Selection/select" + playerSelected[i]);
         }
     }

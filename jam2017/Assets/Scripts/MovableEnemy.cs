@@ -217,6 +217,7 @@ public class MovableEnemy : MonoBehaviour {
             direction = Quaternion.AngleAxis(random, Vector3.forward) * direction;
         }
 
+        bullet.GetComponent<Bullet>().damage = GetComponent<EnemyScript>().damage;
         bullet.GetComponent<Rigidbody2D>().velocity = direction.normalized * bulletSpeed;
     }
 

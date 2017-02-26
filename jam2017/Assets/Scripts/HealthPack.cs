@@ -20,7 +20,7 @@ public class HealthPack : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            other.GetComponent<PlayableChar>().SetHp(hp);
+            other.GetComponentInParent<PlayableChar>().SetHp(hp);
             gameObject.SetActive(false);
         }
     }

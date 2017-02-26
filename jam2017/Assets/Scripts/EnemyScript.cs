@@ -21,7 +21,6 @@ public class EnemyScript : MonoBehaviour {
         hp -= damage;
         if (hp <= 0)
         {
-            Destroy(this.gameObject);
             return points;
         }
         else return 0;
