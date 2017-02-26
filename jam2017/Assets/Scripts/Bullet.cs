@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour {
                 Destroy(other.transform.parent.gameObject);
             }
         }
-        if(other.tag == "Player" && tag=="Enemy" )
+        if(other.tag == "Player" && tag!= "Player" && tag!="EnemyBullet")
         {
             other.GetComponentInParent<PlayableChar>().SetHp(-damage);
             Destroy(this.gameObject);

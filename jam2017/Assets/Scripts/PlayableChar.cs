@@ -7,6 +7,7 @@ public class PlayableChar : MonoBehaviour
 {
     // Character Attributes
     public int healthPoints;
+    private int SP;
     public float movSpeed;
     public float dashLength;
     public Text score;
@@ -37,6 +38,7 @@ public class PlayableChar : MonoBehaviour
     public virtual void Start()
     {
         point = 0;
+        SP = 0;
         score.text = "Score  :  " + point;
         maxHealth = healthPoints;
         hpSlider.maxValue = maxHealth;
@@ -61,6 +63,7 @@ public class PlayableChar : MonoBehaviour
     public void Update()
     {
         hpSlider.value = Mathf.MoveTowards(hpSlider.value, healthPoints, 2f);
+        SPSlider.value = Mathf.MoveTowards(SPSlider.value, SP, 2f);
         if (PlayerIdNumber == 0)
         {
             PlayerIdNumber = 1;
@@ -170,7 +173,11 @@ public class PlayableChar : MonoBehaviour
     public void UpdatePoint(int pts)
     {
         this.point += pts;
-        SPSlider.value = Mathf.MoveTowards(hpSlider.value, hpSlider.value+pts, 2f);
+        SP += pts;
+        if(SP > 100)
+        {
+            SP = 100;
+        }
         score.text = "Score  :  " + point;
     }
 
