@@ -14,7 +14,7 @@ public class Dialogue_pewdiepie : MonoBehaviour {
     private string[] waveTexts = { "There  is  no  tolerance  for  rebels.        \nLay  down  your  weapons  and  your  family\nWill  be  spared.",
         "How  amusing.     \nDid  you  notice  you  can  collect  points ...     \nAim  for  a  high  score !",
         "That  really  is  weird.     \nYou  can  push  your  allies  around!     \nMaybe  that  could  help  you  gather  more  points ...",
-        "I've  made  up my  mind.     \nIf  one  of  you  can  get  more  points,  he  will\nbe  my  right  hand.  You  know  what  you  need  to  do.",
+        "I've  made  up my  mind.     \nIf  only  one  of  you  is  left  alive,  he  will\nbe  my  right  hand.  You  know  what  you  need  to  do.",
         "Still  not  done  ...  Hurry  up!     \nI'm  getting  tired  and  I  can  stop  this\nwhenever  I  want." };
 
     private int currentWave = 0;
