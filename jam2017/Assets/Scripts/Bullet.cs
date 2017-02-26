@@ -20,8 +20,13 @@ public class Bullet : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D other)
     {
+        GameObject shootEffect = null;
+
         if(other.tag == "Enemy")
         {
+            shootEffect = (GameObject)Instantiate(Resources.Load("Prefabs/ShootEffect"));
+            shootEffect.transform.position = other.transform.position;
+
             Debug.Log("Je pogne l'ennemi");
             Destroy(this.gameObject);
             int points = other.GetComponentInParent<EnemyScript>().Damage(damage);
@@ -33,8 +38,13 @@ public class Bullet : MonoBehaviour {
         }
         if(other.tag == "Player" && tag!= "Player" && tag!="PlayerBullet")
         {
+            shootEffect = (GameObject)Instantiate(Resources.Load("Prefabs/ShootEffect"));
+            shootEffect.transform.position = other.transform.position;
+
             other.GetComponentInParent<PlayableChar>().SetHp(-damage);
             Destroy(this.gameObject);
         }
+
+        Destroy(shootEffect, 0.25f);
     }
 }

@@ -18,11 +18,11 @@ public class Hole : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Feet")
         {
             Vector2 toCenter = center.position - other.transform.position;
-            other.GetComponent<Rigidbody2D>().velocity += toCenter;
-            other.GetComponent<PlayableChar>().falling = true;
+            other.GetComponentInParent<Rigidbody2D>().velocity += toCenter;
+            other.GetComponentInParent<PlayableChar>().falling = true;
         }
                 
                
@@ -30,11 +30,11 @@ public class Hole : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Feet")
         {
             Vector2 toCenter = center.position - other.transform.position;
             Debug.Log(toCenter.x + " " + toCenter.y);
-            other.GetComponent<Rigidbody2D>().velocity = toCenter.normalized;
+            other.GetComponentInParent<Rigidbody2D>().velocity = toCenter.normalized;
         }
 
 
@@ -42,9 +42,9 @@ public class Hole : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Feet")
         {
-            other.GetComponent<PlayableChar>().falling = false;
+            other.GetComponentInParent<PlayableChar>().falling = false;
         }
 
 

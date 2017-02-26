@@ -14,6 +14,8 @@ public class PlayableChar : MonoBehaviour
     public Slider SPSlider;
     public Slider hpSlider;
     private int point;
+    private SpriteRenderer charRenderer;
+    private bool isInvincible;
 
     protected Melee melWeapon;
     protected Guns rangWeapon;
@@ -28,6 +30,8 @@ public class PlayableChar : MonoBehaviour
 
     public Collider2D regularCollider;
     public Collider2D flippedCollider;
+    public Collider2D RegularFeet;
+    public Collider2D flippedFeet;
 
     private int maxHealth;
     protected int meleeAttack;
@@ -45,6 +49,7 @@ public class PlayableChar : MonoBehaviour
         score = GameObject.Find("Score" + PlayerIdNumber).GetComponent<Text>();
         hpSlider = GameObject.Find("Player" + PlayerIdNumber).GetComponent<Slider>();
         SPSlider = GameObject.Find("SpecialBar" + PlayerIdNumber).GetComponent<Slider>();
+        charRenderer = GetComponent<SpriteRenderer>();
         point = 0;
         SP = 0;
         score.text = "Score  :  " + point;
@@ -113,12 +118,16 @@ public class PlayableChar : MonoBehaviour
             this.GetComponent<SpriteRenderer>().flipX = true;
             flippedCollider.gameObject.SetActive(true);
             regularCollider.gameObject.SetActive(false);
+            flippedFeet.gameObject.SetActive(true);
+            RegularFeet.gameObject.SetActive(false);
         }
         else if(xRight < -0.2)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
             flippedCollider.gameObject.SetActive(false);
             regularCollider.gameObject.SetActive(true);
+            flippedFeet.gameObject.SetActive(false);
+            RegularFeet.gameObject.SetActive(true);
         }
 
         if (Input.GetButtonDown("R1Player"+PlayerIdNumber))
@@ -190,12 +199,33 @@ public class PlayableChar : MonoBehaviour
             hpSlider.value = hpSlider.maxValue;
         } else
         {
-            Debug.Log("J'ai " + healthPoints);
+            if((!isInvincible && value < 0) || value > 0)
             healthPoints += value;
-            Debug.Log("la j'ai" + healthPoints);
+            if (value < 0)
+            {
+                isInvincible = true;
+                StartCoroutine(FlashDamage(-value));
+            }
             if (healthPoints <= 0)
                 Destroy(gameObject);
         }
+    }
+
+    IEnumerator FlashDamage(int value)
+    {
+        for (int i = 0; i < value; i++)
+        {
+            if(i%2 == 0)
+            {
+                charRenderer.color = Color.red;
+            }
+            else
+            {
+                charRenderer.color = Color.white;
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
+        isInvincible = false;
     }
 
     public void UpdatePoint(int pts)
