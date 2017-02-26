@@ -5,6 +5,7 @@ using UnityEngine;
 public class StampDownUp : MonoBehaviour {
 
     public float timeToDescend;
+    private int pointsGot = 0;
     private float actualTime;
     float descendValue;
 
@@ -37,5 +38,26 @@ public class StampDownUp : MonoBehaviour {
             stamp.GetComponent<FadeOut>().enabled = true;
             denied.GetComponent<FadeOut>().enabled = true;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+       
+        if (other.tag == "Enemy")
+        {
+            int damage = other.GetComponentInParent<EnemyScript>().hp;
+            int points = other.GetComponentInParent<EnemyScript>().Damage(damage);
+
+            if (points > 0)
+            {
+                Destroy(other.transform.parent.gameObject);
+                pointsGot = points;
+            }
+        }
+    }
+
+    public int GetPointsGot()
+    {
+        return pointsGot;
     }
 }

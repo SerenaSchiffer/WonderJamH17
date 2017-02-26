@@ -24,6 +24,8 @@ public class PlayableSuit : PlayableChar {
         {
             denied = (GameObject)Instantiate(Resources.Load("Prefabs/DeniedAttack"));
             denied.transform.position = GameObject.Find("BusinessMan").transform.GetChild(0).transform.position;
+            int points = denied.GetComponent<StampDownUp>().GetPointsGot();
+            UpdatePoint(points);
         }
     }
 
