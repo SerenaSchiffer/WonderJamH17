@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayableSuit : PlayableChar {
     Transform viseur;
     public static int ID;
+
     GameObject denied;
     // Use this for initialization
     public override void Awake()
@@ -33,7 +34,7 @@ public class PlayableSuit : PlayableChar {
     {
         if (nextShot == 0)
         {
-            nextShot = 0.70f;
+            nextShot = fireRate;
             Vector2 direction = viseur.position - transform.position;
             direction.Normalize();
             //Debug.Log(direction.x + " " + direction.y);
@@ -52,7 +53,7 @@ public class PlayableSuit : PlayableChar {
 
             bullet.transform.localPosition = bulletSpawn;
 
-            bullet.GetComponent<Rigidbody2D>().velocity = direction * 10;
+            bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
             bullet.GetComponent<Bullet>().damage = this.damage;
             bullet.GetComponent<Bullet>().Creator = this;
             bullet.GetComponent<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];

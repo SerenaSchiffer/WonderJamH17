@@ -53,7 +53,7 @@ public class PlayableFarmer : PlayableChar {
         if (nextShot == 0)
         {
 
-            nextShot = 1.5f;
+            nextShot = fireRate;
             Vector2 direction = viseur.position - transform.position;
             direction.Normalize();
             Debug.Log("nextShot = 0");
