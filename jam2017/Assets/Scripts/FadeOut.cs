@@ -8,6 +8,7 @@ public class FadeOut : MonoBehaviour {
     private float actualTime;
     private float fadeValue;
     public bool destroyAfter;
+    public bool isCharacter = false;
     GameObject ObjectToFade;
     public GameObject OptionnalObjectToDestroy;
 
@@ -27,11 +28,14 @@ public class FadeOut : MonoBehaviour {
             ObjectToFade.GetComponent<SpriteRenderer>().color = new Color(actualValue.r, actualValue.g, actualValue.b, actualValue.a - fadeValue);
             if (actualTime >= timeToDie)
             {
+            if (isCharacter)
+                Destroy(this.gameObject);
+
             if (destroyAfter)
             {
                 Destroy(transform.parent.parent.gameObject);
             }
-            GetComponent<FadeOut>().enabled = false;
+            
 
             if(gameObject.transform.parent.name == "DeniedAttack" && gameObject.name == "Denied")
             {
@@ -42,6 +46,7 @@ public class FadeOut : MonoBehaviour {
             {
                 Destroy(OptionnalObjectToDestroy);
             }
-            }
+            GetComponent<FadeOut>().enabled = false;
+        }
     }
 }

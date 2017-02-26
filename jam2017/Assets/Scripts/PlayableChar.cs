@@ -97,8 +97,11 @@ public class PlayableChar : MonoBehaviour
     {
         hpSlider.value = Mathf.MoveTowards(hpSlider.value, healthPoints, 2f);
         SPSlider.value = Mathf.MoveTowards(SPSlider.value, SP, 2f);
-        if(SP == 100)
+        if (SP == 100)
+        {
             GetComponentInChildren<ParticleSystem>().Play();
+            SP_Blinker.StartBlinking(PlayerIdNumber - 1);
+        }
         if (PlayerIdNumber == 0)
         {
             PlayerIdNumber = 1;
@@ -195,6 +198,7 @@ public class PlayableChar : MonoBehaviour
     {
         // Effects of the special attack
         GetComponentInChildren<ParticleSystem>().Stop();
+        SP_Blinker.EndBlinking(PlayerIdNumber - 1);
     }
 
     public void SetHp(int value)
@@ -213,7 +217,10 @@ public class PlayableChar : MonoBehaviour
                 StartCoroutine(FlashDamage(-value));
             }
             if (healthPoints <= 0)
-                Destroy(gameObject);
+            {
+                GetComponent<FadeOut>().enabled = true;
+                Destroy(this);
+            }
         }
     }
 
