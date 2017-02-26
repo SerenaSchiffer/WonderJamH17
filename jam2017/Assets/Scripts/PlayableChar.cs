@@ -56,9 +56,12 @@ public class PlayableChar : MonoBehaviour
     protected virtual void RangeAttack() { }
     protected virtual void MeleeAttack() { }
     protected virtual void Dash() { }
+
+
     public void Update()
     {
-        if(PlayerIdNumber == 0)
+        hpSlider.value = Mathf.MoveTowards(hpSlider.value, healthPoints, 2f);
+        if (PlayerIdNumber == 0)
         {
             PlayerIdNumber = 1;
         }
@@ -158,8 +161,9 @@ public class PlayableChar : MonoBehaviour
             hpSlider.value = hpSlider.maxValue;
         } else
         {
+            Debug.Log(hp);
             healthPoints += hp;
-            hpSlider.value = Mathf.MoveTowards(hpSlider.value, healthPoints, 2f);
+            
         }
     }
 
