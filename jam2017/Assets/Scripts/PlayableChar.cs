@@ -59,6 +59,24 @@ public class PlayableChar : MonoBehaviour
     protected virtual void MeleeAttack() { }
     protected virtual void Dash() { }
 
+    protected void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Player in collision with " + other.name);
+        float KnockBackRate = 10;
+        Vector3 bulletVelocity = other.GetComponent<Rigidbody2D>().velocity;
+        string ecece;
+        if(other.tag == "PlayerBullet")
+        {
+            Debug.Log(this.name+" vs "+other.gameObject.GetComponent<Bullet>().Creator.name);
+            if(this.name != other.gameObject.GetComponent<Bullet>().Creator.name)
+            {
+                Debug.Log("The tag is actually PlayerBullet");
+                transform.position += new Vector3(bulletVelocity.x * KnockBackRate * Time.deltaTime, bulletVelocity.y * KnockBackRate * Time.deltaTime, 0.0f);
+                Destroy(other.gameObject);
+            }
+            
+        }
+    }
 
     public void Update()
     {
