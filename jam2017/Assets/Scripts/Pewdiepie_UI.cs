@@ -27,6 +27,7 @@ public class Pewdiepie_UI : MonoBehaviour {
     private long money;
     private bool raiseMoney;
     private SelectedAttack selectedAttack;
+    private bool isFlipped = false;
     bool nukeActivated;
 
 	// Use this for initialization
@@ -99,6 +100,7 @@ public class Pewdiepie_UI : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            isFlipped = true;
             Vector2 position = GameObject.Find("LeftSpawnPosition").transform.position;
             SpawnEnemy(position, SelectedSpawnPosition.Left);
         }
@@ -128,6 +130,7 @@ public class Pewdiepie_UI : MonoBehaviour {
                     spawnedAttack = (GameObject)Instantiate(Resources.Load("Prefabs/Soldier"));
                     spawnedAttack.transform.position = spawnPosition;
                     spawnedAttack.GetComponent<MovableEnemy>().type = TypeMoveableEnemy.Soldier;
+                    spawnedAttack.GetComponent<SpriteRenderer>().flipX = isFlipped;
                     money -= spawnedAttack.GetComponent<MovableEnemy>().spawnCost;
                 }
                 else

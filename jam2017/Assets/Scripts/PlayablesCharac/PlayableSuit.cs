@@ -25,7 +25,7 @@ public class PlayableSuit : PlayableChar {
     {
         if (nextShot == 0)
         {
-            nextShot = 0.75f;
+            nextShot = 0.70f;
             Vector2 direction = viseur.position - transform.position;
             direction.Normalize();
             //Debug.Log(direction.x + " " + direction.y);
@@ -46,6 +46,7 @@ public class PlayableSuit : PlayableChar {
 
             bullet.GetComponent<Rigidbody2D>().velocity = direction * 10;
             bullet.GetComponent<Bullet>().damage = this.damage;
+            bullet.GetComponent<Bullet>().Creator = this;
             bullet.GetComponent<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];
         }
         if (nextShot > 0)

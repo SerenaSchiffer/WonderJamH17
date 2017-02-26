@@ -206,6 +206,11 @@ public class MovableEnemy : MonoBehaviour {
         bullet.transform.position = transform.position;
         direction = GetDistance(other);
 
+        if (direction.x >= 0)
+            GetComponent<SpriteRenderer>().flipX = true;
+        else
+            GetComponent<SpriteRenderer>().flipX = false;
+
         if (type == TypeMoveableEnemy.Robot || type == TypeMoveableEnemy.Juggernaut)
         {
             float random = UnityEngine.Random.Range(-spreadShoot, spreadShoot);
