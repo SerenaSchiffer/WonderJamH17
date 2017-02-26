@@ -33,10 +33,7 @@ public class MovableEnemy : MonoBehaviour {
     private float decNextShot = 0;
     private int cpt = 0;
     
-    // Use this for initialization
-    void Start() {
-
-    }
+   
 
     // Update is called once per frame
     void Update() {
