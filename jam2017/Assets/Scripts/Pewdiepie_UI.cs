@@ -93,7 +93,7 @@ public class Pewdiepie_UI : MonoBehaviour {
             }
             if(Input.GetKeyDown(KeyCode.Space) && nukeActivated)
             {
-                Nuke();
+                StartCoroutine(Nuke());
             }
         #endregion
 
@@ -245,8 +245,15 @@ public class Pewdiepie_UI : MonoBehaviour {
         money = 0;
     }
 
-    void Nuke()
+    IEnumerator Nuke()
     {
+        Image nuke_flash = GameObject.Find("Flash").GetComponent<Image>();
+        for(int i = 0; i < 300; i++)
+        {
+            yield return new WaitForSeconds(0.005f);
+            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + Random.Range(-0.1f, 0.1f), Camera.main.transform.position.y + Random.Range(-0.1f, 0.1f), Camera.main.transform.position.z);
+            nuke_flash.color = new Color(nuke_flash.color.r, nuke_flash.color.g, nuke_flash.color.b, i * 0.005f);
+        }
         SceneManager.LoadScene("End_Dictator");
     }
 }
