@@ -154,6 +154,9 @@ public class Pewdiepie_UI : MonoBehaviour {
     }
     private void SpawnEnemy(Vector2 spawnPosition, SelectedSpawnPosition ssp)
     {
+        if (Dialogue_pewdiepie.isActive)
+            return;
+
         GameObject spawnedAttack;
 
         switch (selectedAttack)
