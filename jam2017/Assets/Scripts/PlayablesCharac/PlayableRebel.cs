@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayableRebel : PlayableChar {
 
     Transform viseur;
+    AudioSource[] audioSources;
     public static int ID;
     GameObject Xwing;
 
@@ -17,6 +18,7 @@ public class PlayableRebel : PlayableChar {
         viseur = transform.GetChild(0);
         nextShot = 0;
         PlayerIdNumber = ID;
+        audioSources = GetComponents<AudioSource>();
         base.Awake();
     }
 
@@ -27,6 +29,7 @@ public class PlayableRebel : PlayableChar {
         if (!Xwing)
         {
             Xwing = (GameObject)Instantiate(Resources.Load("Prefabs/XWingContainer"));
+            audioSources[0].Play();
         }
     }
 
@@ -39,6 +42,7 @@ public class PlayableRebel : PlayableChar {
             direction.Normalize();
             Debug.Log(direction.x + " " + direction.y);
             GameObject bullet = (GameObject)Instantiate(Resources.Load("Prefabs/Lazer"));
+            audioSources[1].Play();
             float angle = Vector2.Angle(direction, new Vector2(1, 0));
             if(direction.y < 0)
             {
@@ -84,6 +88,7 @@ public class PlayableRebel : PlayableChar {
         if (GetComponent<SpriteRenderer>().flipX)
             direction = 1;
         GameObject hitBox = (GameObject)Instantiate(Resources.Load("Prefabs/SlashLightsaber"), new Vector2(transform.position.x + direction * 0.3f, transform.position.y - 0.25f), Quaternion.identity);
+        audioSources[0].Play();
         hitBox.GetComponent<Bullet>().damage = meleeDamage;
         hitBox.GetComponent<Bullet>().timeToLive = 1f;
         hitBox.GetComponent<Bullet>().Creator = this;
