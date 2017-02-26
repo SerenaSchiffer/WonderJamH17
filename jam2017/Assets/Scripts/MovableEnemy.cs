@@ -203,6 +203,7 @@ public class MovableEnemy : MonoBehaviour {
         else
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/EnemyBullet"));
 
+        GetComponent<AudioSource>().Play();
         bullet.transform.position = transform.position;
         direction = GetDistance(other);
 
