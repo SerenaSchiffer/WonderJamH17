@@ -19,16 +19,16 @@ public class WinCondition : MonoBehaviour {
             switch (players[0].name)
             {
                 case "Rebel":
-                    EndScript.SetClassID(1);
+                    EndScript.SetClassID(0);
                     break;
                 case "Anonymous":
-                    EndScript.SetClassID(2);
+                    EndScript.SetClassID(1);
                     break;
                 case "BusinessMan":
-                    EndScript.SetClassID(3);
+                    EndScript.SetClassID(2);
                     break;
                 case "Farmer":
-                    EndScript.SetClassID(4);
+                    EndScript.SetClassID(3);
                     break;
                 default:
                     break;

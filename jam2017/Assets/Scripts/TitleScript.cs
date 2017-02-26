@@ -11,6 +11,14 @@ public class TitleScript : MonoBehaviour {
 
     public Text[] textBoxes;
 	
+    void Start()
+    {
+        PlayableAnonymous.UpdateID(0);
+        PlayableFarmer.UpdateID(0);
+        PlayableRebel.UpdateID(0);
+        PlayableSuit.UpdateID(0);
+    }
+
 	// Update is called once per frame
 	void Update () {
         lastJoystickUse--;
