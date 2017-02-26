@@ -17,8 +17,6 @@ public class Chickenscript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         sprintFrames = 30;
-        direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)); //TOREMOVE
-        direction = direction.normalized;
         myrb2d = GetComponent<Rigidbody2D>();
         if (direction.x > 0)
             GetComponent<SpriteRenderer>().flipX = true;

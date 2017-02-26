@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: d714707f771017849b7c43223848e472
 folderAsset: yes
+<<<<<<< HEAD:jam2017/Assets/Prefabs.meta
 timeCreated: 1488077405
+=======
+timeCreated: 1488077373
+>>>>>>> 32bbb6dcd98ff8ecbe5f89f8c4904f04179d396b:jam2017/Assets/Prefabs.meta
 licenseType: Free
 DefaultImporter:
   userData: 
