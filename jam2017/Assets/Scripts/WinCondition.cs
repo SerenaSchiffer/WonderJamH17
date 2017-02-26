@@ -16,7 +16,7 @@ public class WinCondition : MonoBehaviour {
         if(players.Length == 1)
         {
             EndScript.SetWinPlayer(players[0].GetComponentInParent<PlayableChar>().PlayerIdNumber);
-            switch (players[0].name)
+            switch (players[0].transform.parent.name)
             {
                 case "Rebel":
                     EndScript.SetClassID(0);
