@@ -19,7 +19,7 @@ public class PlayableChar : MonoBehaviour
 
     protected Melee melWeapon;
     protected Guns rangWeapon;
-    protected float fireRate;
+    public float fireRate;
     protected float nextShot;
     protected Animator myAnimator;
     public int damage;
@@ -32,6 +32,8 @@ public class PlayableChar : MonoBehaviour
     public Collider2D flippedCollider;
     public Collider2D RegularFeet;
     public Collider2D flippedFeet;
+
+    public float bulletSpeed;
 
     private int maxHealth;
     protected int meleeAttack;
@@ -66,6 +68,8 @@ public class PlayableChar : MonoBehaviour
     public void Start()
     {
         transform.GetChild(0).GetComponentInChildren<SpriteRenderer>().color = ColorSystem.mainColors[PlayerIdNumber];
+        GetComponentInChildren<ParticleSystem>().startColor = ColorSystem.mainColors[PlayerIdNumber];
+        GetComponentInChildren<ParticleSystem>().Play();
     }
     protected virtual void SpecialAttack(){ }
     protected virtual void RangeAttack() { }
