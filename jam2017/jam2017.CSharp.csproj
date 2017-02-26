@@ -77,10 +77,15 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\CharSelect.cs" />
+    <Compile Include="Assets\Scripts\ColorSystem.cs" />
+    <Compile Include="Assets\Scripts\Dash.cs" />
     <Compile Include="Assets\Scripts\DeathZone.cs" />
+    <Compile Include="Assets\Scripts\Dialogue_pewdiepie.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\ExplosionEffect.cs" />
     <Compile Include="Assets\Scripts\Guns.cs" />
+    <Compile Include="Assets\Scripts\Hack.cs" />
+    <Compile Include="Assets\Scripts\HealthPack.cs" />
     <Compile Include="Assets\Scripts\Hole.cs" />
     <Compile Include="Assets\Scripts\HoleDismiss.cs" />
     <Compile Include="Assets\Scripts\IntroScript.cs" />
@@ -89,6 +94,7 @@
     <Compile Include="Assets\Scripts\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\Missile.cs" />
     <Compile Include="Assets\Scripts\MovableEnemy.cs" />
+    <Compile Include="Assets\Scripts\NukeText.cs" />
     <Compile Include="Assets\Scripts\Pewdiepie_UI.cs" />
     <Compile Include="Assets\Scripts\PlayableChar.cs" />
     <Compile Include="Assets\Scripts\PlayablesCharac\PlayableAnonymous.cs" />
@@ -96,6 +102,8 @@
     <Compile Include="Assets\Scripts\PlayablesCharac\PlayableRebel.cs" />
     <Compile Include="Assets\Scripts\PlayablesCharac\PlayableSuit.cs" />
     <Compile Include="Assets\Scripts\Projectiles\DestroyShotgun.cs" />
+    <Compile Include="Assets\Scripts\SpawnHealthPack.cs" />
+    <Compile Include="Assets\Scripts\SpawnTank.cs" />
     <Compile Include="Assets\Scripts\Tank.cs" />
     <Compile Include="Assets\Scripts\TitleScript.cs" />
   </ItemGroup>
