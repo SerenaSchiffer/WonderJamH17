@@ -58,6 +58,10 @@ public class PlayableChar : MonoBehaviour
     protected virtual void Dash() { }
     public void Update()
     {
+        if(PlayerIdNumber == 0)
+        {
+            PlayerIdNumber = 1;
+        }
         if (meleeAttack > 0)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
