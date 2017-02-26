@@ -28,6 +28,8 @@ public class PlayableChar : MonoBehaviour
 
     public Collider2D regularCollider;
     public Collider2D flippedCollider;
+    public Collider2D RegularFeet;
+    public Collider2D flippedFeet;
 
     private int maxHealth;
     protected int meleeAttack;
@@ -113,12 +115,16 @@ public class PlayableChar : MonoBehaviour
             this.GetComponent<SpriteRenderer>().flipX = true;
             flippedCollider.gameObject.SetActive(true);
             regularCollider.gameObject.SetActive(false);
+            flippedFeet.gameObject.SetActive(true);
+            RegularFeet.gameObject.SetActive(false);
         }
         else if(xRight < -0.2)
         {
             this.GetComponent<SpriteRenderer>().flipX = false;
             flippedCollider.gameObject.SetActive(false);
             regularCollider.gameObject.SetActive(true);
+            flippedFeet.gameObject.SetActive(false);
+            RegularFeet.gameObject.SetActive(true);
         }
 
         if (Input.GetButtonDown("R1Player"+PlayerIdNumber))
