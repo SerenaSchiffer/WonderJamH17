@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class XWingAttack : MonoBehaviour {
 
+    private int pointsGot = 0;
+
 	// Use this for initialization
 	void Start () {
         float random = (float)Random.Range(0f, 360f);
@@ -14,4 +16,15 @@ public class XWingAttack : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void AddPoints(int nbPoints)
+    {
+        pointsGot += nbPoints;
+        Debug.Log(pointsGot);
+    }
+
+    public int GetPointsGot()
+    {
+        return pointsGot;
+    }
 }

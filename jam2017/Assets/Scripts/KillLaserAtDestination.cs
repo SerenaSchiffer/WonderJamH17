@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KillLaserAtDestination : MonoBehaviour {
+    
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,18 @@ public class KillLaserAtDestination : MonoBehaviour {
             gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled=true;
             Debug.Log(gameObject.transform.GetChild(0).name);
             gameObject.GetComponent<FadeOut>().enabled = true;
+        }
+
+        if (other.tag == "Enemy")
+        {
+            Debug.Log(other.name);
+            int points = other.GetComponentInParent<EnemyScript>().Damage(50);
+
+            if (points > 0)
+            {
+                transform.parent.parent.GetComponent<XWingAttack>().AddPoints(points);
+                Destroy(other.transform.parent.gameObject);
+            }
         }
     }
 }
