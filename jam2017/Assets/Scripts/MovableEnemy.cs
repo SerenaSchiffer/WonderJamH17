@@ -234,7 +234,6 @@ public class MovableEnemy : MonoBehaviour {
             lr.SetPosition(0, gameObject.transform.position + new Vector3(0, 0, -0.1f));
             lr.SetPosition(1, other.transform.position + new Vector3(0, 0, -0.1f));
         }
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
