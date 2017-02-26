@@ -37,6 +37,7 @@ public class SpawnTank : MonoBehaviour {
     void SpawnTanks()
     {
         GameObject tank = (GameObject)Instantiate(Resources.Load("Prefabs/Tank"));
+        GetComponent<AudioSource>().Play();
         tank.transform.position = transform.position;
     }
 }

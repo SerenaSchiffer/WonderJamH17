@@ -26,6 +26,9 @@ public class Dialogue_pewdiepie : MonoBehaviour {
     {
         if (GameObject.Find("Dia_Pewds"))
         {
+            if (aliveFrames % 3 == 0)
+                GetComponent<AudioSource>().Play();
+
             Debug.Log(waveTexts[currentWave-1].Length);
             if (aliveFrames / 3 == waveTexts[currentWave-1].Length)
                 StartCoroutine(CloseWindow());
