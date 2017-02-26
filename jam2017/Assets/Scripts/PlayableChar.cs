@@ -64,9 +64,8 @@ public class PlayableChar : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Player in collision with " + other.name);
-        float KnockBackRate = 10;
+        float KnockBackRate = other.GetComponent<Bullet>().damage / 5f;
         Vector3 bulletVelocity = other.GetComponent<Rigidbody2D>().velocity;
-        string ecece;
         if(other.tag == "PlayerBullet")
         {
             Debug.Log(this.name+" vs "+other.gameObject.GetComponent<Bullet>().Creator.name);

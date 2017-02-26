@@ -99,5 +99,6 @@ public class PlayableFarmer : PlayableChar {
         GameObject hitBox = (GameObject)Instantiate(Resources.Load("Prefabs/SlashPitchfork"), new Vector2(transform.position.x + direction * 0.3f, transform.position.y - 0.25f), Quaternion.identity);
         hitBox.GetComponent<Bullet>().damage = meleeDamage;
         hitBox.GetComponent<Bullet>().timeToLive = 1f;
+        hitBox.GetComponent<Bullet>().Creator = this;
     }
 }

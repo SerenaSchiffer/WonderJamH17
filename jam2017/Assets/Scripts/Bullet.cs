@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour {
     {
         if(other.tag == "Enemy")
         {
+            Debug.Log("Je pogne l'ennemi");
             Destroy(this.gameObject);
             int points = other.GetComponentInParent<EnemyScript>().Damage(damage);
             if(points > 0)
