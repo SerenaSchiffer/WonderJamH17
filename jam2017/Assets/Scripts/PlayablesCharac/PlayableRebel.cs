@@ -6,6 +6,7 @@ public class PlayableRebel : PlayableChar {
 
     Transform viseur;
     public static int ID;
+    GameObject Xwing;
 
     // Use this for initialization
     public override void Start()
@@ -22,6 +23,11 @@ public class PlayableRebel : PlayableChar {
     protected override void UseSpecial()
     {
         // Effects of the special attack
+        if (!Xwing)
+        {
+            Debug.Log("Censé instantiate un XWING");
+            Xwing = (GameObject)Instantiate(Resources.Load("Prefabs/XWingContainer"));
+        }
     }
 
     protected override void RangeAttack()

@@ -100,6 +100,12 @@ public class PlayableChar : MonoBehaviour
         }
         else myAnimator.SetBool("isShooting", false);
 
+        if(Input.GetAxis("L2Player"+PlayerIdNumber)>0.8)
+        {
+            UseSpecial();
+        }
+
+
         float xLeft = Input.GetAxis("LeftAxisXPlayer" + PlayerIdNumber);
         float yLeft = Input.GetAxis("LeftAxisYPlayer" + PlayerIdNumber) * -1;
         Vector2 velocity = new Vector2(xLeft, yLeft);
