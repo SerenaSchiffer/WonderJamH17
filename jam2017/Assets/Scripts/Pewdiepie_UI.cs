@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 enum SelectedAttack
 {
@@ -84,7 +85,7 @@ public class Pewdiepie_UI : MonoBehaviour {
         {
             selectedAttack = SelectedAttack.Missile;
         }
-        if(Input.GetKeyDown(KeyCode.Space) || nukeActivated)
+        if(Input.GetKeyDown(KeyCode.Space) && nukeActivated)
         {
             Nuke();
         }
@@ -204,12 +205,11 @@ public class Pewdiepie_UI : MonoBehaviour {
     public void ActivateNuke()
     {
         nukeActivated = true;
-        Debug.Log("rafa");
         money = 0;
     }
 
     void Nuke()
     {
-
+        SceneManager.LoadScene("End_Dictator");
     }
 }
