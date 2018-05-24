@@ -30,8 +30,13 @@ public class Dialogue_pewdiepie : MonoBehaviour {
         {
             isActive = true;
 
-            if (aliveFrames % 3 == 0)
-                GetComponent<AudioSource>().Play();
+            AudioSource pewdsDialogue;
+            if (aliveFrames % 6 == 0)
+                if (pewdsDialogue = GetComponent<AudioSource>())
+                {
+                    pewdsDialogue.Play();
+                    aliveFrames++;
+                }
 
             Debug.Log(waveTexts[currentWave - 1].Length);
             if (aliveFrames / 3 == waveTexts[currentWave - 1].Length)
@@ -81,8 +86,11 @@ public class Dialogue_pewdiepie : MonoBehaviour {
 
     void KillPlayers()
     {
-        nuke.gameObject.SetActive(true);
-        pewdiepieUI.GetComponent<Pewdiepie_UI>().ActivateNuke();
-        money.text = "Infinite $";
+        if (nuke && pewdiepieUI && money)
+        {
+            nuke.gameObject.SetActive(true);
+            pewdiepieUI.GetComponent<Pewdiepie_UI>().ActivateNuke();
+            money.text = "Infinite $";
+        }
     }
 }

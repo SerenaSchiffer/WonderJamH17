@@ -11,8 +11,11 @@ public class Hack : MonoBehaviour {
     // Use this for initialization
     void Start () {
         hackPanel = GameObject.Find("Hack");
-        hackPanel.SetActive(false);
-        beingHacked = false;
+        if (hackPanel)
+        {
+            hackPanel.SetActive(false);
+            beingHacked = false;
+        }
     }
 	
 	public void TurnOnHacking()

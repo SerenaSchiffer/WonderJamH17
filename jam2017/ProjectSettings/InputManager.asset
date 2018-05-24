@@ -457,7 +457,7 @@ InputManager:
     m_Name: P1Select
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: q
     positiveButton: joystick 1 button 0
     altNegativeButton: 
     altPositiveButton: 
@@ -473,7 +473,7 @@ InputManager:
     m_Name: P2Select
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: w
     positiveButton: joystick 2 button 0
     altNegativeButton: 
     altPositiveButton: 
@@ -489,7 +489,7 @@ InputManager:
     m_Name: P3Select
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: e
     positiveButton: joystick 3 button 0
     altNegativeButton: 
     altPositiveButton: 
@@ -505,7 +505,7 @@ InputManager:
     m_Name: P4Select
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: r
     positiveButton: joystick 4 button 0
     altNegativeButton: 
     altPositiveButton: 
@@ -537,7 +537,7 @@ InputManager:
     m_Name: SelectMenu
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: t
     positiveButton: joystick button 0
     altNegativeButton: 
     altPositiveButton: 
