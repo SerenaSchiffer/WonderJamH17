@@ -34,7 +34,14 @@ public class CharSelect : MonoBehaviour {
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Application.LoadLevel("emile");
+            int i = 0;
+            if (selected1) i++;
+            if (selected2) i++;
+            if (selected3) i++;
+            if (selected4) i++;
+
+            if(i > 1)
+                Application.LoadLevel("emile");
         }
         //select1
         if (Input.GetAxisRaw("LeftAxisXPlayer1") != 0 && !p1Sel)
