@@ -8,6 +8,7 @@ public class EnemyScript : MonoBehaviour {
     public int hp, damage, points;
     private GameObject myHealthBar;
     private int maxHp;
+    private bool alreadyGavePoints;
 
     // Use this for initialization
     void Start ()
@@ -26,8 +27,9 @@ public class EnemyScript : MonoBehaviour {
     {
         hp -= damage;
         myHealthBar.GetComponent<Slider>().value = (float)hp / (float)maxHp;
-        if (hp <= 0)
+        if (hp <= 0 && !alreadyGavePoints)
         {
+            alreadyGavePoints = true;
             return points;
         }
         else return 0;

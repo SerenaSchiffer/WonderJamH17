@@ -69,7 +69,7 @@ public class Dialogue_pewdiepie : MonoBehaviour {
             panel.SetActive(true);
             currentWave = waveNumber;
             aliveFrames = 0;
-            
+
         }
         else
         {

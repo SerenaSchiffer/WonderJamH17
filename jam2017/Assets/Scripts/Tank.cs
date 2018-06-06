@@ -26,7 +26,22 @@ public class Tank : MonoBehaviour {
         if(other.tag == "Player")
         {
             //fonction de kill
-            other.gameObject.GetComponentInParent<PlayableChar>().SetHp(-999);
+            other.gameObject.GetComponentInParent<PlayableChar>().SetHp(-15);
+            if (other.gameObject.GetComponentInParent<Rigidbody2D>())
+            {
+                //disable player controller
+                //add velocity
+                //coroutine in 0.1f second
+                
+                if (other.gameObject.transform.position.y < gameObject.transform.position.y)
+                {
+                    other.gameObject.transform.parent.transform.position += new Vector3(0, -1, 0);
+                }
+                else
+                {
+                    other.gameObject.transform.parent.transform.position += new Vector3(0, 1,0);
+                }
+            }
             //Destroy(other.transform.parent.gameObject);
         }
     }

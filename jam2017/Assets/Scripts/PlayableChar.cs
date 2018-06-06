@@ -78,8 +78,15 @@ public class PlayableChar : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Player in collision with " + other.name);
-        float KnockBackRate = other.GetComponent<Bullet>().damage / 5f;
+        Bullet bulletScript;
+        float KnockBackRate = 0f;
+        if (bulletScript = other.GetComponent<Bullet>())
+        {
+            KnockBackRate = other.GetComponent<Bullet>().damage / 5f;
+        }
+
         Vector3 bulletVelocity = other.GetComponent<Rigidbody2D>().velocity;
+        
         if(other.tag == "PlayerBullet")
         {
             Debug.Log(this.name+" vs "+other.gameObject.GetComponent<Bullet>().Creator.name);
@@ -239,6 +246,7 @@ public class PlayableChar : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         isInvincible = false;
+        charRenderer.color = Color.white;
     }
 
     public void UpdatePoint(int pts)
